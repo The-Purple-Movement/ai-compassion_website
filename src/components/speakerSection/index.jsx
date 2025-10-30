@@ -60,6 +60,9 @@ import ani from "@/../public/ani.png";
 import butler from "@/../public/butler.png";
 import nichol from "@/../public/nichol.png";
 import dekai from "@/../public/dekai.png";
+import part from "@/../public/patrick.png";
+import jean from "@/../public/jean.png";
+import gali from "@/../public/gali.png";
 const speakers = [
   {
     slug: "hiroshi-ishiguro",
@@ -408,6 +411,24 @@ const speakers = [
     name: "DE KAI",
     title: "Anas Almarie is an award-winning digital growth consultant and engineer with 17 years of experience, leading Social Station Branding & Marketing Agency in Dubai. He serves Fortune 500 companies and local businesses with branding, digital marketing, AI, and social media solutions. As Digital Marketing Institute trainer and LinkedIn Solutions Advisor, he maintains 98% satisfaction feedback. A keynote speaker featured on Dubai Eye, Sky News Arabia, Al Arabiya, and CNBC Arabia, Almarie speaks at events across the MENA region.",
     img: dekai
+  },
+  { 
+    slug: "patrick-mccullough",
+    name: "Patrick McCullough",
+    title: "Anas Almarie is an award-winning digital growth consultant and engineer with 17 years of experience, leading Social Station Branding & Marketing Agency in Dubai. He serves Fortune 500 companies and local businesses with branding, digital marketing, AI, and social media solutions. As Digital Marketing Institute trainer and LinkedIn Solutions Advisor, he maintains 98% satisfaction feedback. A keynote speaker featured on Dubai Eye, Sky News Arabia, Al Arabiya, and CNBC Arabia, Almarie speaks at events across the MENA region.",
+    img: part
+  },
+  { 
+    slug: "jean-alfonso-decena",
+    name: "Jean Alfonso-Decena",
+    title: "Anas Almarie is an award-winning digital growth consultant and engineer with 17 years of experience, leading Social Station Branding & Marketing Agency in Dubai. He serves Fortune 500 companies and local businesses with branding, digital marketing, AI, and social media solutions. As Digital Marketing Institute trainer and LinkedIn Solutions Advisor, he maintains 98% satisfaction feedback. A keynote speaker featured on Dubai Eye, Sky News Arabia, Al Arabiya, and CNBC Arabia, Almarie speaks at events across the MENA region.",
+    img: jean
+  },
+  { 
+    slug: "dr-gali-einav",
+    name: "Dr. Gali Einav",
+    title: "Anas Almarie is an award-winning digital growth consultant and engineer with 17 years of experience, leading Social Station Branding & Marketing Agency in Dubai. He serves Fortune 500 companies and local businesses with branding, digital marketing, AI, and social media solutions. As Digital Marketing Institute trainer and LinkedIn Solutions Advisor, he maintains 98% satisfaction feedback. A keynote speaker featured on Dubai Eye, Sky News Arabia, Al Arabiya, and CNBC Arabia, Almarie speaks at events across the MENA region.",
+    img: gali
   },
 ];
 
