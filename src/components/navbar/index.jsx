@@ -192,12 +192,12 @@ export default function Navbar() {
           </div>
 
           <Link
-            href="https://peatix.com/us/event/4584550/"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe1DGS12mNg1nLPuawyoWMCoS4xmKRDKAv8_gAytJTpIJMx-g/viewform?usp=header"
             target="_blank"
             rel="noopener noreferrer"
             className=" padding-8px px-6 py-2 rounded-full bg-[#D55485] hover:bg-[#D55485]/80 transition-colors duration-200 text-white font-medium text-sm"
           >
-            Register
+            Join Us
           </Link>
         </div>
 

@@ -14,7 +14,7 @@ export default function Joinsection() {
                 “The true measure of AI’s success will not be its power, but its wisdom, not its efficiency, but its compassion.”
             </p>
             <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full">
-                <Link className="w-full md:w-fit px-10 py-3 bg-[#89478D] text-white rounded-full font-semibold" href="https://peatix.com/event/4584550/" aria-label="Register Now">Register Now</Link>
+                <Link className="w-full md:w-fit px-10 py-3 bg-[#89478D] text-white rounded-full font-semibold" href="https://docs.google.com/forms/d/e/1FAIpQLSe1DGS12mNg1nLPuawyoWMCoS4xmKRDKAv8_gAytJTpIJMx-g/viewform?usp=header" aria-label="Join Us">Join Us</Link>
                 <Link className="w-full md:w-fit px-10 py-3 border rounded-full font-semibold" href="mailto:connect@compassionai.io " aria-label="Ask a question">Ask a question</Link>
             </div>
         </div>
