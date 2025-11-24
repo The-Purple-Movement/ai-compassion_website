@@ -24,10 +24,10 @@ export default function Hero() {
           compassion at the heart of technology.
         </p>
         <a
-          href="https://peatix.com/event/4584550/"
+          href="https://forms.gle/7FJH6pNbKxgi11wt5"
           className="w-fit rounded-full bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-purple-700 transition"
         >
-          Register Now
+          Join Us
         </a>
       </div>
 
