@@ -63,6 +63,7 @@ import dekai from "@/../public/dekai.png";
 import part from "@/../public/patrick.png";
 import jean from "@/../public/jean.png";
 import gali from "@/../public/gali.png";
+import edith from "@/../public/edith.png";
 const speakers = [
   {
     slug: "hiroshi-ishiguro",
@@ -429,6 +430,12 @@ const speakers = [
     name: "Dr. Gali Einav",
     title: "Anas Almarie is an award-winning digital growth consultant and engineer with 17 years of experience, leading Social Station Branding & Marketing Agency in Dubai. He serves Fortune 500 companies and local businesses with branding, digital marketing, AI, and social media solutions. As Digital Marketing Institute trainer and LinkedIn Solutions Advisor, he maintains 98% satisfaction feedback. A keynote speaker featured on Dubai Eye, Sky News Arabia, Al Arabiya, and CNBC Arabia, Almarie speaks at events across the MENA region.",
     img: gali
+  },
+  { 
+    slug: "edith-oller ",
+    name: "Edith Öller ",
+    title: "Anas Almarie is an award-winning digital growth consultant and engineer with 17 years of experience, leading Social Station Branding & Marketing Agency in Dubai. He serves Fortune 500 companies and local businesses with branding, digital marketing, AI, and social media solutions. As Digital Marketing Institute trainer and LinkedIn Solutions Advisor, he maintains 98% satisfaction feedback. A keynote speaker featured on Dubai Eye, Sky News Arabia, Al Arabiya, and CNBC Arabia, Almarie speaks at events across the MENA region.",
+    img: edith
   },
 ];
 
