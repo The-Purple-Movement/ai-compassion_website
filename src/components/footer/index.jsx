@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FaDiscord } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -34,9 +35,27 @@ export default function Footer() {
                 </p>
             </div>
 
-            <div className="flex items-center gap-6">
-              <a href="https://x.com/ai_compassion"> <FaXTwitter size={42} /></a>
-               <a href="https://discord.gg/QmWJ28fNk"> <FaDiscord size={45} /></a>
+            <div className="flex flex-col items-end gap-6 md:self-stretch md:justify-between">
+                <div className="flex items-center gap-6">
+                    <a href="https://x.com/ai_compassion"> <FaXTwitter size={42} /></a>
+                    <a href="https://discord.com/invite/3hzvqf4qJ"> <FaDiscord size={45} /></a>
+                </div>
+
+                <div className="flex flex-col items-center gap-2">
+                    <span className="text-sm font-libre opacity-90">Co-organized with:</span>
+                    <a href="https://www.goipeace.or.jp/en/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20 transition-colors">
+                        <Image
+                            src="/goi-peace.svg"
+                            alt="Goi Peace Foundation"
+                            width={42}
+                            height={50}
+                            className="brightness-0 invert"
+                        />
+                        <span className="font-libre text-sm font-semibold leading-tight">
+                            Goi Peace<br />Foundation
+                        </span>
+                    </a>
+                </div>
             </div>
         </div>
     )
