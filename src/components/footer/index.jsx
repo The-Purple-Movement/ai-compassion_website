@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from "next/link"; 
 import Image from "next/image";
 import { FaDiscord, FaEnvelope, FaGraduationCap, FaHandshake, FaBullhorn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-br from-[#8265AB] via-[#6B4E94] to-[#5A3D7C] text-white overflow-hidden relative" id="contact">
+        <footer className="bg-gradient-to-br from-[#8265AB] via-[#6B4E94] to-[#5A3D7C] text-white overflow-hidden relative rounded-t-[2.5rem] md:rounded-t-[5rem]" id="contact">
             {/* Background pattern decoration */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-48 -mt-48 transition-transform duration-1000"></div>
             
