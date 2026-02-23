@@ -1,66 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-/* ------------------ DATA ------------------ */
-const scheduleLeft = [
-  { time: "", title: "", subtitle: "", items: ["Jean Alfonso-Decena (Moderator)"] },
-  { time: "", title: "", subtitle: "", items: ["Tamami Tono"] },
-  { time: "", title: "", subtitle: "", items: ["Sister Jenna"] },
-  { time: "", title: "", subtitle: "", items: ["Hiroshi Ishiguro & Edi Pyrek"] },
-  { time: "", title: "", subtitle: "", items: ["Yoichi Ochiai"] },
-  { time: "", title: "", subtitle: "", items: ["Hiroo Saionji"] },
-  { time: "", title: "", subtitle: "", items: ["Kunal Sood"] },
-  
-];
-
-const scheduleRight = [
-  { time: "", title: "", subtitle: "", items: ["Taikyo Murakami / Narumi Yoshikawa"] },
-  { time: "", title: "", subtitle: "", items: ["Dr. Olaf Witkowski"] },
-  { time: "", title: "", subtitle: "", items: ["Toshie Takahashi"] },
-  { time: "", title: "", subtitle: "", items: ["Alex Cahana"] },
-  { time: "", title: "", subtitle: "", items: ["Ben Weber"] },
-  { time: "", title: "", subtitle: "", items: ["Ahmer Inam"] },
-];
-
-const global = [
-  { subtitle: "", title: "South Asia", time: "11:00-14:00 UTC", items: ["Avkash Chauhan ( Moderator)","Sadhvi Bhagawati Saraswati","Prof. Prakash Singh Bisen","Anupam Trivedi","Devendra Kumar Jain","Saurabh Bhatt"]},
-  { subtitle: "", title: "GCC/Europe", time: "14:00-17:00 UTC", items: ["Walied Albasheer (Moderator)","Ahmed Khbeer","Anas Almarie","Waleed Akaeha","Mohamed Elyas","Manel Chada El Islam Benmahcene","Sara Hegazy","Aliaa Mohamed","Haytham El-Azaizy","Mohamed Osman","Raed Habbis","Dr. Anour F A DAFA-ALLA","Krishna Raj","Dr. Fady Ismaeel","Manal Rifki"] },
-  { subtitle: "", title: "Africa", time: "17:00-20:00 UTC", items: ["Dr. Lee Kironget (Moderator)", "Patrick McCullough (Moderator)", "Nell Watson", "Gary Bolles", "Alexis Stokes", "Sofia Couto da Rocha"] },
-  { subtitle: "", title: "Latin America", time: "20:00-23:00 UTC", items: ["Marques Anderson (Moderator)","Valeria Soler","WarīNkwī Flores","Pico Velásquez","Justin Breen"] },
-  { subtitle: "", title: "North America", time: "23:00-02:00 UTC", items: ["Ani Chahal Honan (Moderator)","Stephen Ibaraki", "Matthew Manos", "Douglas Thomas", "Jennifer Aaker","Stephen Butler","Nichol Bradford","DE KAI",] },
-  { subtitle: "", title: "Oceania", time: "02:00-05:00 UTC", items: ["Tim Moriarity","Olivera Tomic", "Ian Haycroft"] },
-  { subtitle: "", time: "14:00 - 15:00", title: "1 hour Ma Reflection", items: ["Jun Suto (Moderator)","Regional Producers"] },
-];
-
-const kyoto = [
-  {
-    subtitle: "",
-    title: "Kyoto",
-    time: "15:00-17:00 UTC",
-    items: [
-      "Jun Suto (Moderator)",
-      "Shoukei Matsumoto"],
-  },
-];
-
-
-const preEvent = [
-  { title: "Lab A", items: ["Los Angeles (PDT): Sept 29, 8:00–9:00 PM", "Vienna (CEST): Sept 30, 5:00–6:00 AM", "Tokyo (JST): Sept 30, 12:00–1:00 PM"] },
-  { title: "Lab B", items: ["Los Angeles (PDT): Sept 29, 12:00–1:00 AM", "Vienna (CEST): Sept 30, 9:00–10:00 AM", "Tokyo (JST): Sept 30, 4:00–5:00 PM"] },
-];
-
-const locations = [
-  { label: "UTC", key: "UTC", offset: 0 },
-  { label: "San Francisco (PDT)", key: "PDT", offset: -7 },
-  { label: "Osaka (JST)", key: "JST", offset: 9 },
-  { label: "Mumbai (IST)", key: "IST", offset: 5.5 },
-  { label: "Abu Dhabi (GST)", key: "GST", offset: 4 },
-  { label: "London (BST)", key: "BST", offset: 1 },
-  { label: "New York (EDT)", key: "EDT", offset: -4 },
-  { label: "Lagos (WAT)", key: "WAT", offset: 1 },
-  { label: "Rio de Janeiro (BRT)", key: "BRT", offset: -3 },
-  { label: "Sydney (AEST)", key: "AEST", offset: 10 },
-];
+import { scheduleLeft, scheduleRight, global, kyoto, preEvent, locations } from "./timelineData";
 
 /* ------------------ TIME HELPERS ------------------ */
 
@@ -353,7 +294,7 @@ function TimelineSection({
         <div className="w-full flex flex-col items-center my-6">
           <h2 className="text-2xl md:text-3xl font-bold text-[#89478D] text-center mb-1">Osaka: USA Pavilion Opening</h2>
           <div className="text-base md:text-lg text-gray-700 text-center">
-            October 2, 2025:&nbsp;{convertUtcRangeToTarget("05:00 - 11:00", conversionOffset, tzLabel)}
+            October 2, 2025:&nbsp;{convertUtcRangeToTarget("02:00 - 08:00", conversionOffset, tzLabel)}
           </div>
         </div>
       )}
