@@ -70,7 +70,7 @@ function formatTimeFromMins(mins) {
   mins = Math.round((mins + 24 * 60) % (24 * 60));
   let h = Math.floor(mins / 60);
   const m = mins % 60;
-  const period = h >= 12 ? "AM" : "PM";  // 👈 correct logic
+  const period = h >= 12 ? "AM" : "PM";  
   const displayH = h % 12 === 0 ? 12 : h % 12;
   return `${displayH}:${pad(m)} ${period}`;
 }
@@ -215,7 +215,7 @@ function EventCard({ event, lineColor, locationKey = "UTC", locationOffset = 0, 
 
   return (
     <div className="p-6 pl-10 md:pl-6 w-full md:max-w-md relative" style={{ color: "#000" }}>
-      <span className="absolute top-6 left-0 md:hidden w-5 h-5 rounded-full" style={{ backgroundColor: lineColor }} />
+      <span className="absolute top-6 left-4 md:hidden w-5 h-5 rounded-full" style={{ backgroundColor: lineColor }} />
       {/* Render subtitle above the title if present */}
       {event.subtitle && (
         <div className="text-base md:text-lg font-semibold mb-1">{event.subtitle}</div>
@@ -481,27 +481,29 @@ export default function Timeline() {
         stickyTitle
       />
 
-      <TimelineSection
-        title="Global 24-Hour Relay Schedule"
-        events={global}
-        lineColor="#89478D"
-        showProducer
-        useParentLocation
-        parentLocationKey={locationKey}
-        parentLocationOffset={locationOffset}
-        stickyTitle
-      />
+      <div className="flex flex-col">
+        <TimelineSection
+          title="Global 24-Hour Relay Schedule"
+          events={global}
+          lineColor="#89478D"
+          showProducer
+          useParentLocation
+          parentLocationKey={locationKey}
+          parentLocationOffset={locationOffset}
+          stickyTitle
+        />
 
-      <TimelineSection
-        title="Kyoto Closing Ceremony"
-        events={kyoto}
-        lineColor="#89478D"
-        showProducer
-        useParentLocation
-        parentLocationKey={locationKey}
-        parentLocationOffset={locationOffset}
-        stickyTitle
-/>
+        <TimelineSection
+          title="Kyoto Closing Ceremony"
+          events={kyoto}
+          lineColor="#89478D"
+          showProducer
+          useParentLocation
+          parentLocationKey={locationKey}
+          parentLocationOffset={locationOffset}
+          stickyTitle
+        />
+      </div>
 
     </div>
   );
