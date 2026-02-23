@@ -83,7 +83,7 @@ export default function FAQ() {
                 Frequently Asked Questions
             </h2>
 
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 xl:gap-8">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 xl:gap-8 divide-y divide-gray-300 xl:divide-y-0">
                 {columns.map((col, colIndex) => (
                     <div key={colIndex} className="max-w-2xl mx-auto flex flex-col divide-y divide-gray-300 w-full">
                         {col.map((faq, index) => {
