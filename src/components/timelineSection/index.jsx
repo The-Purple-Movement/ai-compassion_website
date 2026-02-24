@@ -11,7 +11,7 @@ function formatTimeFromMins(mins) {
   mins = Math.round((mins + 24 * 60) % (24 * 60));
   let h = Math.floor(mins / 60);
   const m = mins % 60;
-  const period = h >= 12 ? "AM" : "PM";  
+  const period = h >= 12 ? "PM" : "AM";  
   const displayH = h % 12 === 0 ? 12 : h % 12;
   return `${displayH}:${pad(m)} ${period}`;
 }
@@ -200,6 +200,7 @@ function TimelineSection({
   useParentLocation = false,
   parentLocationKey,
   parentLocationOffset,
+  startOnRight = false,
 }) {
   // compute effective location used for conversion inside this section
   const effectiveLocationKey = useParentLocation ? parentLocationKey : (fixedLocationKey ?? locationKey);
@@ -352,7 +353,8 @@ function TimelineSection({
           </div>
         ) : (
           events.map((event, index) => {
-            const leftAlign = isLeftAligned(event) || index % 2 === 0;
+            const isForcedLeft = isLeftAligned(event);
+            const leftAlign = isForcedLeft || (startOnRight ? index % 2 !== 0 : index % 2 === 0);
             const noBullets = false;
             return (
               <div key={index} className="relative grid grid-cols-1 md:grid-cols-9 items-start">
@@ -443,6 +445,7 @@ export default function Timeline() {
           parentLocationKey={locationKey}
           parentLocationOffset={locationOffset}
           stickyTitle
+          startOnRight
         />
       </div>
 
