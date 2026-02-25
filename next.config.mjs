@@ -2,6 +2,16 @@
 const nextConfig = {
   poweredByHeader: false, // also removes "X-Powered-By"
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com', // Specifically allows YouTube's image domain
+        pathname: '/vi/**', // Allows any path starting with /vi/ (YouTube's thumbnail folder)
+      },
+    ],
+  },
+
   async headers() {
     return [
       {

@@ -20,6 +20,7 @@ export default function Navbar() {
           { href: '#about', label: 'About' },
           { href: '#speakers', label: 'Speakers' },
           { href: '#schedule', label: 'Schedule' },
+          { href: '/gallery', label: 'Gallery' },
           { href: '#faq', label: 'FAQ' },
           { href: '#contact', label: 'Contact' },
         ]
@@ -28,6 +29,7 @@ export default function Navbar() {
           { href: '/#about', label: 'About' },
           { href: '/#speakers', label: 'Speakers' },
           { href: '/#schedule', label: 'Schedule' },
+          { href: '/gallery', label: 'Gallery' },
           { href: '/#faq', label: 'FAQ' },
           { href: '/#contact', label: 'Contact' },
         ];
@@ -181,6 +183,7 @@ export default function Navbar() {
                   className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#D1462E] transition-all duration-300 ease-in-out ${
                     // Highlight dot for contact page
                     (pathname === '/contact' && link.href === '/contact') ||
+                    (pathname === '/gallery' && link.href === '/gallery') ||
                     currentSection === link.href ||
                     pathname === link.href
                       ? 'opacity-100 scale-100'
