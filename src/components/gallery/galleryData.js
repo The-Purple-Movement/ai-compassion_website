@@ -2,7 +2,7 @@ export const galleryVideos = [
   // OSAKA
   { id: 1, title: "AI+Compassion Global Forum 2025", speaker: "Full Relay Overview", segment: "Osaka", youtubeId: "8x6DHCnxOvk" },
   { id: 2, title: "Osaka Part 1", speaker: "Full AM Session", segment: "Osaka", youtubeId: "VpyVjzzaWgE" },
-  { id: 3, title: "Osaka Part 2", speaker: "Full PM Session", segment: "Osaka", youtubeId: "Gr-i4Zok5Qw" },
+  { id: 3, title: "Osaka Part 2", speaker: "Full PM Session", segment: "Osaka", youtubeId: "kKBBASW-ne4" },
   { id: 4, title: "Ahmer Inam", speaker: "Ahmer Inam", segment: "Osaka", youtubeId: "Ze4sUcGADdQ" },
 
   // SOUTH ASIA
