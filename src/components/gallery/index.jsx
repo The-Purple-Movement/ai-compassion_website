@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { galleryVideos, galleryCategories, regionColors } from '@/data/galleryData';
+import { galleryVideos, galleryCategories, regionColors } from '@/components/gallery/galleryData';
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All');

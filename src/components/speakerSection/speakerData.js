@@ -15,7 +15,7 @@ import olivera from "@/../public/olivera.webp";
 import douglas from "@/../public/douglas.webp";
 import ben from "@/../public/ben.webp";
 import ian from "@/../public/ian.webp";
-import narumi from "@/../public/narumi.webp";
+import narumi from "@/../public/narumi2.webp";
 import ochiai from "@/../public/ochiai.webp";
 import manos from "@/../public/manos.webp";
 import tono from "@/../public/tono.webp";
