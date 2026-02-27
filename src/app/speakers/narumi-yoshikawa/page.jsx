@@ -1,5 +1,5 @@
 import Image from "next/image";
-import narumi from "@/../public/narumi.webp";
+import narumi from "@/../public/narumi2.webp";
 
 export default function GaryABolles() {
   return (
