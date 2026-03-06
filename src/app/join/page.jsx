@@ -60,53 +60,6 @@ export default function JoinPage() {
         });
     };
 
-    // submit to google form (older method)
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setStatus('loading');
-
-    //     try {
-    //         const formBody = new URLSearchParams();
-    //         formBody.append(FIELD_IDS.email, formData.email);
-    //         formBody.append(FIELD_IDS.firstName, formData.firstName);
-    //         formBody.append(FIELD_IDS.lastName, formData.lastName);
-    //         formBody.append(FIELD_IDS.country, formData.country);
-    //         formBody.append(FIELD_IDS.city, formData.city);
-    //         formBody.append(FIELD_IDS.organization, formData.organization);
-    //         formBody.append(FIELD_IDS.role, formData.role);
-    //         formBody.append(FIELD_IDS.newsletter, formData.newsletter);
-
-    //         // Append interests
-    //         formData.interests.forEach(interest => {
-    //             formBody.append(FIELD_IDS.interests, interest);
-    //         });
-
-    //         // Handle "Other" interest if applicable
-    //         if (formData.hasOther && formData.otherInterest) {
-    //             formBody.append(FIELD_IDS.interests, '__other_option__');
-    //             formBody.append(FIELD_IDS.otherInterestText, formData.otherInterest);
-    //         }
-
-    //         // Using fetch with no-cors mode to submit to Google Form
-    //         await fetch(GOOGLE_FORM_ACTION, {
-    //             method: 'POST',
-    //             mode: 'no-cors',
-    //             body: formBody,
-    //             headers: {
-    //                 'Content-Type': 'application/x-www-form-urlencoded'
-    //             }
-    //         });
-
-    //         // "no-cors" fetch will not return an actual response body,
-    //         // but if it doesn't throw, we assume it sent successfully
-    //         setStatus('success');
-    //         window.scrollTo({ top: 0, behavior: 'smooth' });
-    //     } catch (error) {
-    //         console.error('Submission error:', error);
-    //         setStatus('error');
-    //     }
-    // };
-
     // call the backend api to write to db instead of google form
     const handleSubmit = async (e) => {
         e.preventDefault();
