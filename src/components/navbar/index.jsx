@@ -195,9 +195,7 @@ export default function Navbar() {
           </div>
 
           <Link
-            href="https://forms.gle/7FJH6pNbKxgi11wt5"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/aic/join"
             className=" padding-8px px-6 py-2 rounded-full bg-[#D55485] hover:bg-[#D55485]/80 transition-colors duration-200 text-white font-medium text-sm"
           >
             Join Us
@@ -218,7 +216,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="https://peatix.com/us/event/4584550/"
+              href={process.env.NEXT_PUBLIC_REGISTER_URL}
               className="px-6 py-3 rounded-full text-center bg-[#E7E17E] text-black"
             >
               Register

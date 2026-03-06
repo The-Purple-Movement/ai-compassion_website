@@ -21,11 +21,11 @@ export const metadata = {
   openGraph: {
     title: "AI + Compassion",
     description: "The Global Forum on AI + Compassion unites innovators, policymakers, and cultural leaders to explore how artificial intelligence can serve humanity and the planet. ",
-    url: 'https://ai-compassion.netlify.app/',
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: 'AI + Compassion',
     images: [
       {
-        url: 'https:/ai-compassion.netlify.app/web-app-manifest-192x192.png',
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/web-app-manifest-192x192.png`,
         width: 256,
         height: 75,
         alt: "AI + Compassion",

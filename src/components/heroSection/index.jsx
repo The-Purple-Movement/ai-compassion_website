@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import plant from '@/../public/road.png';
 import pot from '@/../public/paper.png';
 import dance from '@/../public/light.png';
@@ -23,12 +24,12 @@ export default function Hero() {
           alliance, spark a new narrative, and activate projects that place
           compassion at the heart of technology.
         </p>
-        <a
-          href="https://forms.gle/7FJH6pNbKxgi11wt5"
+        <Link
+          href="/aic/join"
           className="w-fit rounded-full bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-purple-700 transition"
         >
           Join Us
-        </a>
+        </Link>
       </div>
 
       {/* Right Content - Images Grid */}
