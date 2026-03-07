@@ -195,7 +195,7 @@ export default function Navbar() {
           </div>
 
           <Link
-            href="/aic/join"
+            href="/join"
             className=" padding-8px px-6 py-2 rounded-full bg-[#D55485] hover:bg-[#D55485]/80 transition-colors duration-200 text-white font-medium text-sm"
           >
             Join Us

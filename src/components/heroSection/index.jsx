@@ -25,7 +25,7 @@ export default function Hero() {
           compassion at the heart of technology.
         </p>
         <Link
-          href="/aic/join"
+          href="/join"
           className="w-fit rounded-full bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-purple-700 transition"
         >
           Join Us
