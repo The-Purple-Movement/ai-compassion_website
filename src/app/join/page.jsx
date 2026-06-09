@@ -9,8 +9,6 @@ import { ArrowLeft, CheckCircle2, Loader2, Send } from 'lucide-react';
 
 const GOOGLE_FORM_ACTION = process.env.NEXT_PUBLIC_GOOGLE_FORM_ACTION;
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 const FIELD_IDS = {
     email: "entry.371099452",
     firstName: "entry.937928410",
@@ -60,26 +58,35 @@ export default function JoinPage() {
         });
     };
 
-    // call the backend api to write to db instead of google form
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('loading');
 
         try {
-            const response = await fetch(`${API_URL}/aic/join/`, {
+            const params = new URLSearchParams();
+            params.append(FIELD_IDS.firstName, formData.firstName);
+            params.append(FIELD_IDS.lastName, formData.lastName);
+            params.append(FIELD_IDS.email, formData.email);
+            params.append(FIELD_IDS.country, formData.country);
+            params.append(FIELD_IDS.city, formData.city);
+            params.append(FIELD_IDS.organization, formData.organization);
+            params.append(FIELD_IDS.role, formData.role);
+            formData.interests.forEach(interest => {
+                params.append(FIELD_IDS.interests, interest);
+            });
+            if (formData.hasOther && formData.otherInterest) {
+                params.append(FIELD_IDS.interests, '__other_option__');
+                params.append(FIELD_IDS.otherInterestText, formData.otherInterest);
+            }
+            params.append(FIELD_IDS.newsletter, formData.newsletter);
+
+            await fetch(GOOGLE_FORM_ACTION, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params.toString(),
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            console.log('Success:', data);
             setStatus('success');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (error) {
