@@ -1,9 +1,20 @@
 export const galleryVideos = [
   // OSAKA
-  { id: 1, title: "AI+Compassion Global Forum 2025", speaker: "Full Relay Overview", segment: "Osaka", youtubeId: "8x6DHCnxOvk" },
   { id: 2, title: "Osaka Part 1", speaker: "Full AM Session", segment: "Osaka", youtubeId: "VpyVjzzaWgE" },
+  { id: 32, title: "Musical Performance", speaker: "Tamami Tono", segment: "Osaka", youtubeId: "jjkJhWsAiOM" },
+  { id: 33, title: "Welcome & Opening Remarks", speaker: "Hiroo Saionji", segment: "Osaka", youtubeId: "850WxjHST38" },
+  { id: 34, title: "The State of AI: Why Compassion Can't Wait", speaker: "Dr. Olaf Witkowski", segment: "Osaka", youtubeId: "_gdIqohCm_w" },
+  { id: 35, title: "Awakened Intelligence: Cultivating Inner Compassion", speaker: "Sister Jenna", segment: "Osaka", youtubeId: "pNds7lwETDA" },
+  { id: 36, title: "Navigating the AI Paradigm Shift", speaker: "Toshie Takahashi", segment: "Osaka", youtubeId: "yuWfao6T6Hg" },
+  { id: 37, title: "Surfing Ethical Complexity", speaker: "Ben Waber", segment: "Osaka", youtubeId: "r5caIoKV_Hs" },
+  { id: 38, title: "Life & Future of Life", speaker: "Hiroshi Ishiguro & Edi Pryek", segment: "Osaka", youtubeId: "yM-E6Yn9JJY" },
+  { id: 39, title: "An Experiment in Co-Creating", speaker: "Masato Tahara", segment: "Osaka", youtubeId: "T6ynK11OeVo" },
   { id: 3, title: "Osaka Part 2", speaker: "Full PM Session", segment: "Osaka", youtubeId: "kKBBASW-ne4" },
-  { id: 4, title: "Ahmer Inam", speaker: "Ahmer Inam", segment: "Osaka", youtubeId: "Ze4sUcGADdQ" },
+  { id: 40, title: "The Audacity of Compassionate Leadership", speaker: "Kunal Sood", segment: "Osaka", youtubeId: "OFCej4_DkbY" },
+  { id: 4, title: "How Indigenous Wisdom Can Nurture Compassionate AI", speaker: "Ahmer Inam", segment: "Osaka", youtubeId: "Ze4sUcGADdQ" },
+  { id: 41, title: "Shared Prosperity: Tokenizing Compassion in Bhutan", speaker: "Alex Cahana", segment: "Osaka", youtubeId: "sviaDNs-WwA" },
+  { id: 42, title: "Dance with All Life in the AWA", speaker: "Dr. Narumi Yoshikawa & Taiko Murakami", segment: "Osaka", youtubeId: "ApKTRRVrgJY" },
+  { id: 43, title: "Digital Nature and the Future of Human Civilization", speaker: "Yoichi Ochiai", segment: "Osaka", youtubeId: "suSJKx6WXLA" },
 
   // SOUTH ASIA
   { id: 5, title: "South Asia Segment", speaker: "Full Segment", segment: "South Asia", youtubeId: "IDQ2Z0jb8lQ" },
@@ -11,6 +22,7 @@ export const galleryVideos = [
 
   // GCC / EUROPE
   { id: 7, title: "GCC Europe Segment", speaker: "Full Segment", segment: "GCC / Europe", youtubeId: "k0J8DAb1O9g" },
+  { id: 31, title: "Manal Rafki", speaker: "Manal Rafki", segment: "GCC / Europe", youtubeId: "LBLhIWTMYIg" },
 
   // AFRICA
   { id: 8, title: "Africa Segment", speaker: "Full Segment", segment: "Africa", youtubeId: "Mjf4_hHT8dY" },

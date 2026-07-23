@@ -1,4 +1,5 @@
 import Herosection from "@/components/heroSection";
+import VideoSection from "@/components/videoSection";
 import Joinsection from "@/components/joinSection";
 import SponsorSection from "@/components/sponsorSection";
 import FaqSection from "@/components/faqSection";
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
       <Herosection />
+      <VideoSection />
       <AboutSection />
       <SpeakerSection />
       <TimelineSection />
