@@ -9,7 +9,11 @@ export default function Gallery() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [filteredVideos, setFilteredVideos] = useState(galleryVideos);
 
-  const heroVideo = galleryVideos.find(v => v.id === 1);
+  const heroVideo = {
+    id: 'hero',
+    title: "AI Compassion Global Forum Overview",
+    youtubeId: "8x6DHCnxOvk"
+  };
 
   useEffect(() => {
     if (selectedCategory === 'All') {
