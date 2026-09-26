@@ -505,7 +505,7 @@ export default function ThreeEarthGlobe({
       {/* Dynamic Hover Tooltip displaying Producer of that region */}
       {hoveredNode && hoveredNode.producer && (
         <div className="absolute top-4 sm:top-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none px-4 py-2 rounded-2xl bg-[#0F172A]/90 text-white shadow-2xl border border-white/20 backdrop-blur-md animate-in fade-in zoom-in-95 duration-150 flex items-center gap-3">
-          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-white/40 shrink-0 bg-slate-700">
+          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-white/40 shrink-0 bg-slate-700 flex items-center justify-center">
             {hoveredNode.producer.img ? (
               <Image
                 src={hoveredNode.producer.img}
@@ -514,8 +514,8 @@ export default function ThreeEarthGlobe({
                 className="object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-xs font-bold text-white bg-emerald-800">
-                {hoveredNode.producer.name.slice(0, 2)}
+              <div className="w-full h-full flex items-center justify-center text-xs font-bold text-amber-300 bg-amber-900/70">
+                {hoveredNode.producer.available ? '✦' : hoveredNode.producer.name.slice(0, 2)}
               </div>
             )}
           </div>

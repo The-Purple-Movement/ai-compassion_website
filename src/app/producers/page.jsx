@@ -2,9 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const producers = [
-  { name: "Christina Gerakiteys", subtitle: "Regional Producer — Oceania & Pacific", img: "/christina.jpg", type: "Producer" },
   { name: "Jun Suto", subtitle: "Regional Producer — Kyoto", img: "/jun.png", type: "Producer" },
-  { name: "Taikyo Murakami", subtitle: "Co-Producer — Kyoto", img: "/murakami.webp", type: "Co-Producer" },
   { name: "Aditi Singh", subtitle: "Regional Producer — Southeast Asia (Youth Hub)", img: "/aditi.jpg", type: "Producer" },
   { name: "Deepu S Nath", subtitle: "Regional Producer — South Asia", img: "/deepu.png", type: "Producer" },
   { name: "Walied Albasheer", subtitle: "Regional Producer — Middle East, Caucasus & Central Asia", img: "/walied.jpg", type: "Producer" },
@@ -13,7 +11,6 @@ const producers = [
   { name: "Edith Öller", subtitle: "Co-Producer — UK, Ireland, Iberia & West Africa", img: "/edith-oller.jpg", type: "Co-Producer" },
   { name: "Julieta Reyes", subtitle: "Regional Producer — Eastern & Southern South America, Caribbean", img: "/julieta.jpg", type: "Producer" },
   { name: "Ani Chahal Honan", subtitle: "Regional Producer — Western North America", img: "/ani.jpg", type: "Producer" },
-  { name: "Stephin Kalani", subtitle: "Regional Lead — Hawaiʻi, Alaska & Pacific Islands", img: "/stephin.webp", type: "Regional Lead" },
 ];
 
 export default function ProducersPage() {

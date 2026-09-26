@@ -23,7 +23,6 @@ import inam from "@/../public/inam.webp";
 import edi from "@/../public/edi.webp";
 import toshie from "@/../public/toshie.webp";
 import matsumoto from "@/../public/matsumoto.webp";
-import murakami from "@/../public/mukarami.png";
 import saionji from "@/../public/saionji.webp";
 import tahara from "@/../public/tahara.webp";
 import alexis from "@/../public/alexis.png";
@@ -208,12 +207,6 @@ export const speakers = [
     name: "Shoukei Matsumoto",
     title: "Shoukei Matsumoto is a Pure Land Buddhist monk, AI ethics pioneer and futurist exploring how Buddhist philosophy informs ethical AI development. Currently Visiting Professor at University of Bonn for AI in the Human Context, his research focuses on AI, Buddhism, and Transperspectivity. CEO of Interbeing Inc. and international speaker on Human Literacy in the Age of AI, he advocates for Middle Path leadership and coexistence between human and machine intelligence. He is the author of bestselling books translated into 20+ languages.",
     img: matsumoto
-  },
-  { 
-    slug: "taikyo-murakami",
-    name: "Taikyo Murakami",
-    title: "Taikyo Murakami is the acharya of Shingon Esoteric Buddhism and chief priest of Kogenji Temple, specializing in esoteric Buddhism and Heian-Kamakura period culture. With a master's degree from Otani Graduate School in Buddhist culture, he has conducted over 10,000 face-to-face consultations and serves as dean of Faculty of Education at Gokurakuji Temple. A clinical Buddhist chaplain involved in palliative care and secretary of WCRP Japan Youth Group, he has completed the extreme Shou Hassenmai Goma training.",
-    img: murakami
   },
   { 
     slug: "hiroo-saionji",

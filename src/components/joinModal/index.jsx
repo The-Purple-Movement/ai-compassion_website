@@ -43,8 +43,10 @@ const HUB_MAPPING = {
   'East Africa, Southern Africa & Central Europe': 'East Africa, Southern Africa & Central Europe',
   'UK, Ireland, Iberia & West Africa': 'UK, Ireland, Iberia & West Africa',
   'Eastern & Southern South America & Caribbean': 'Eastern & Southern South America & Caribbean',
-  'Eastern North America & Northern South America': 'Eastern North America & Northern South America',
-  'Central North America & Mexico': 'Central North America & Mexico',
+  'Eastern United States and Southern United States': 'Eastern United States and Southern United States',
+  'Eastern North America & Northern South America': 'Eastern United States and Southern United States',
+  'Midwestern United States & Mexico': 'Midwestern United States & Mexico',
+  'Central North America & Mexico': 'Midwestern United States & Mexico',
   'Western North America': 'Western North America',
   'Hawaii, Alaska & Pacific Islands': 'Hawaii, Alaska & Pacific Islands',
 };
@@ -58,8 +60,8 @@ const REGIONAL_HUBS = [
   'East Africa, Southern Africa & Central Europe',
   'UK, Ireland, Iberia & West Africa',
   'Eastern & Southern South America & Caribbean',
-  'Eastern North America & Northern South America',
-  'Central North America & Mexico',
+  'Eastern United States and Southern United States',
+  'Midwestern United States & Mexico',
   'Western North America',
   'Hawaii, Alaska & Pacific Islands',
 ];

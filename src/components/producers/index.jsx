@@ -5,22 +5,10 @@ import Image from 'next/image';
 const PRODUCERS = [
   // Producers & Co-Producers (side-by-side)
   {
-    name: 'Christina Gerakiteys',
-    role: 'Regional Producer — Oceania & Pacific',
-    img: '/christina.jpg',
-    category: 'producer',
-  },
-  {
     name: 'Jun Suto',
     role: 'Regional Producer — Kyoto',
     img: '/jun.png',
     category: 'producer',
-  },
-  {
-    name: 'Taikyo Murakami',
-    role: 'Co-Producer — Kyoto',
-    img: '/murakami.webp',
-    category: 'co-producer',
   },
   {
     name: 'Aditi Singh',
@@ -69,12 +57,6 @@ const PRODUCERS = [
     role: 'Regional Producer — Western North America',
     img: '/ani.jpg',
     category: 'producer',
-  },
-  {
-    name: 'Stephin Kalani',
-    role: 'Regional Lead — Hawaiʻi, Alaska & Pacific Islands',
-    img: '/stephin.webp',
-    category: 'co-producer',
   },
 ];
 

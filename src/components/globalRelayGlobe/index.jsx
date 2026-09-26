@@ -164,6 +164,10 @@ export default function GlobalRelayGlobeSection() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 56px, 72px"
                   />
+                ) : producer.available || producer.name.toLowerCase().includes('available') ? (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-amber-50 border border-dashed border-amber-300 text-amber-800">
+                    <User className="w-6 h-6 text-amber-700 opacity-80" />
+                  </div>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#163B32]/10 via-[#F8F6F0] to-[#C9A96A]/20 text-[#163B32]">
                     <span className="font-editorial text-sm sm:text-base font-bold tracking-wider text-[#163B32]">
@@ -183,13 +187,17 @@ export default function GlobalRelayGlobeSection() {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
                     <span className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      producer.role.toLowerCase().includes('featured speaker') || producer.role.toLowerCase().includes('speakers')
+                      producer.available || producer.name.toLowerCase().includes('available')
+                        ? 'bg-amber-100 text-amber-900 border border-amber-300'
+                        : producer.role.toLowerCase().includes('featured speaker') || producer.role.toLowerCase().includes('speakers')
                         ? 'bg-amber-100 text-amber-900 border border-amber-200'
                         : producer.role.toLowerCase().includes('regional lead')
                         ? 'bg-blue-50 text-blue-900 border border-blue-200'
                         : 'bg-emerald-100 text-[#163B32] border border-emerald-200'
                     }`}>
-                      {producer.role.toLowerCase().includes('featured speaker') || producer.role.toLowerCase().includes('speakers')
+                      {producer.available || producer.name.toLowerCase().includes('available')
+                        ? 'Producer Spot Available'
+                        : producer.role.toLowerCase().includes('featured speaker') || producer.role.toLowerCase().includes('speakers')
                         ? 'Featured Regional Speakers'
                         : producer.role.toLowerCase().includes('regional lead')
                         ? 'Regional Lead'
@@ -264,7 +272,7 @@ export default function GlobalRelayGlobeSection() {
                 title={`${r.code} — ${r.hubs}`}
               >
                 <span>{String(r.id).padStart(2, '0')}</span>
-                <span className="hidden md:inline ml-1.5 opacity-90">{r.hubs.replace(' Hub', '').replace(' Hubs', '')}</span>
+                <span className="hidden md:inline ml-1.5 opacity-90">{r.shortName || r.hubs.replace(/\s+Hubs?/i, '')}</span>
               </button>
             );
           })}
