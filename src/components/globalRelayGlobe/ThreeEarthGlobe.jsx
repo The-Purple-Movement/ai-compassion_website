@@ -301,8 +301,20 @@ export default function ThreeEarthGlobe({
     let animationFrameId;
     let clock = new THREE.Clock();
 
+    let isGlobeVisible = true;
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]) {
+          isGlobeVisible = entries[0].isIntersecting;
+        }
+      },
+      { threshold: 0.05 }
+    );
+    visibilityObserver.observe(container);
+
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+      if (!isGlobeVisible) return;
       const time = clock.getElapsedTime();
       const curActiveIdx = activeIndexRef.current;
 
@@ -469,6 +481,7 @@ export default function ThreeEarthGlobe({
     window.addEventListener('resize', onResize);
 
     return () => {
+      visibilityObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
       container.removeEventListener('mousemove', onPointerMove);
       container.removeEventListener('mousedown', onPointerDown);

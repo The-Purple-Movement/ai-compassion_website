@@ -46,12 +46,12 @@ export default async function CoordinatorDetailPage({ params }) {
         {/* Top Navigation Bar with Back Arrow Button on Top Left Corner */}
         <div className="flex items-center justify-between">
           <Link
-            href="/#regional-coordinators"
+            href="/coordinators"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#D9DDD6] text-[#163B32] hover:bg-[#163B32] hover:text-white transition-all shadow-xs group font-mono text-xs font-bold uppercase tracking-wider cursor-pointer"
-            aria-label="Back to coordinators"
+            aria-label="Back to team"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Regional Coordinators</span>
+            <span>Back to Meet The Team</span>
           </Link>
 
           <span className="text-xs font-mono text-slate-500 uppercase tracking-widest hidden sm:inline">
@@ -144,11 +144,11 @@ export default async function CoordinatorDetailPage({ params }) {
           {/* Footer Back Button */}
           <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
             <Link
-              href="/#regional-coordinators"
+              href="/coordinators"
               className="inline-flex items-center gap-2 text-xs font-semibold text-[#163B32] hover:text-[#C96F4A] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Return to full schedule &amp; forum overview</span>
+              <span>Return to full team directory</span>
             </Link>
           </div>
 

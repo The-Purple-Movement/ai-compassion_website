@@ -42,8 +42,8 @@ export default async function PersonProfilePage({ params }) {
 
   const isProducerGroup = person.type === 'producer' || person.type === 'co-producer';
   const isCoordinator = person.type === 'coordinator' || person.type === 'regional-coordinator';
-  const returnHash = isCoordinator ? '/#regional-coordinators' : isProducerGroup ? '/#producers' : '/#speakers';
-  const returnLabel = isCoordinator ? 'Back to Regional Coordinators' : isProducerGroup ? 'Back to Producers & Co-Producers' : 'Back to Confirmed Speakers';
+  const returnHash = isCoordinator ? '/coordinators' : isProducerGroup ? '/#producers' : '/#speakers';
+  const returnLabel = isCoordinator ? 'Back to Meet The Team' : isProducerGroup ? 'Back to Producers & Co-Producers' : 'Back to Confirmed Speakers';
 
   return (
     <div className="min-h-screen bg-[#F8F6F0] pt-28 pb-20 px-4 sm:px-6 lg:px-12 text-[#171918]">

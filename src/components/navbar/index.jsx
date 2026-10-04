@@ -17,11 +17,11 @@ export default function Navbar() {
 
   // Navigation links
   const navLinks = [
-    { href: isHome ? '#' : '/#', label: 'Info', id: 'info' },
     { href: isHome ? '#about' : '/#about', label: 'About', id: 'about' },
     { href: isHome ? '#relay' : '/#relay', label: 'The Relay', id: 'relay' },
     { href: isHome ? '#producers' : '/#producers', label: 'Producers', id: 'producers' },
     { href: isHome ? '#speakers' : '/#speakers', label: 'Speakers', id: 'speakers' },
+    { href: '/coordinators', label: 'Team', id: 'team' },
     { href: isHome ? '#schedule' : '/#schedule', label: 'Schedule', id: 'schedule' },
     { href: isHome ? '#partners-sponsors' : '/#partners-sponsors', label: 'Partners & Sponsors', id: 'partners-sponsors' },
     { href: isHome ? '#faq' : '/#faq', label: 'FAQ', id: 'faq' },
@@ -96,23 +96,21 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex justify-center px-4 sm:px-6 lg:px-8 ${
-        isScrolled ? 'py-2.5' : 'py-4 md:py-6'
-      }`}
+      className="fixed top-3 sm:top-4 lg:top-5 inset-x-0 z-50 px-4 sm:px-6 lg:px-8 transition-all duration-300 pointer-events-none flex justify-center"
     >
       <nav
         aria-label="Main Navigation"
-        className={`w-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2 rounded-full transition-all duration-300 ${
+        className={`pointer-events-auto w-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#F8F6F0]/90 backdrop-blur-md shadow-sm border border-[#E6E9E4]'
-            : 'bg-[#F8F6F0]/60 backdrop-blur-xs border border-transparent'
+            ? 'bg-[#F8F6F0]/90 backdrop-blur-md border border-[#E6E9E4] shadow-sm'
+            : 'bg-transparent border border-transparent'
         }`}
       >
-        {/* Logo */}
+        {/* Left: Logo */}
         <Link
           href="/"
           onClick={(e) => handleLinkClick(e, '#')}
-          className="flex items-center gap-3 group focus:outline-none rounded-lg"
+          className="flex items-center gap-3 group focus:outline-none shrink-0"
           aria-label="AI + Compassion Global Forum 2026 Home"
         >
           <div className="relative w-8 h-8 sm:w-9 sm:h-9 overflow-hidden transition-transform duration-300 group-hover:scale-105">
@@ -130,8 +128,8 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-1 lg:gap-2 text-xs font-semibold tracking-wide uppercase">
+        {/* Center / Desktop Navigation Links - with generous space from Logo */}
+        <div className="hidden lg:flex items-center ml-8 lg:ml-12 xl:ml-16 gap-1 xl:gap-2 text-[11px] xl:text-xs font-semibold tracking-wide uppercase">
           {navLinks.map((link) => {
             const isRoute = link.href.startsWith('/');
             const isActive = isRoute
@@ -142,7 +140,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`relative px-3 py-1.5 rounded-full transition-all duration-200 ${
+                className={`relative px-2.5 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                   isActive
                     ? 'text-[#171918] font-bold bg-[#171918]/5'
                     : 'text-[#5E625D] hover:text-[#171918] hover:bg-black/5'
@@ -155,7 +153,7 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className={`relative px-3 py-1.5 rounded-full transition-all duration-200 ${
+                className={`relative px-2.5 xl:px-3 py-1.5 rounded-full transition-all duration-200 ${
                   isActive
                     ? 'text-[#171918] font-bold bg-[#171918]/5'
                     : 'text-[#5E625D] hover:text-[#171918] hover:bg-black/5'
@@ -170,35 +168,17 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right CTA / Archive */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Right: 2025 Edition Link */}
+        <div className="hidden sm:flex items-center">
           <a
             href="https://2025.compassionai.io"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[#5E625D] hover:text-[#171918] transition-colors rounded-full hover:bg-black/5"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-[#5E625D] hover:text-[#171918] transition-colors rounded-full hover:bg-black/5 border border-black/10 hover:border-black/20"
             title="Visit 2025 Edition"
           >
             <span>2025 Edition</span>
-            <ArrowUpRight className="w-3 h-3 opacity-60" />
-          </a>
-
-          <a
-            href="https://live.compassionai.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-wider uppercase text-[#F8F6F0] bg-[#163B32] hover:bg-[#0F2620] rounded-full shadow-xs hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
-          >
-            Watch Live Now
-          </a>
-
-          <a
-            href="https://makemypass.com/event/ai-compassion-participants"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-wider uppercase text-[#163B32] bg-white hover:bg-[#163B32]/10 border border-[#163B32] rounded-full shadow-xs hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
-          >
-            Register Now
+            <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
           </a>
         </div>
 
@@ -206,7 +186,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 rounded-full text-[#171918] hover:bg-black/5 transition-colors focus:outline-none"
+          className="lg:hidden p-2 rounded-full text-[#171918] hover:bg-black/5 transition-colors focus:outline-none"
           aria-expanded={isMobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
@@ -216,7 +196,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-4 top-20 bg-[#F8F6F0]/95 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#E6E9E4] z-50 animate-in fade-in zoom-in-95 duration-200">
+        <div className="lg:hidden fixed inset-x-4 top-20 bg-[#F8F6F0]/95 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#E6E9E4] z-50 animate-in fade-in zoom-in-95 duration-200">
           <div className="flex flex-col gap-2">
             {navLinks.map((link) => {
               const isRoute = link.href.startsWith('/');
@@ -251,26 +231,6 @@ export default function Navbar() {
               >
                 <span>2025 Edition Archive</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#5E625D]" />
-              </a>
-
-              <a
-                href="https://live.compassionai.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center py-3 bg-[#163B32] text-[#F8F6F0] rounded-xl font-bold text-xs tracking-wider uppercase shadow-sm cursor-pointer inline-block"
-              >
-                Watch Live Now
-              </a>
-
-              <a
-                href="https://makemypass.com/event/ai-compassion-participants"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center py-3 bg-white text-[#163B32] border border-[#163B32] rounded-xl font-bold text-xs tracking-wider uppercase shadow-sm cursor-pointer inline-block"
-              >
-                Register Now
               </a>
             </div>
           </div>

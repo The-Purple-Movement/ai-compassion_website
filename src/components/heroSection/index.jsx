@@ -1,113 +1,31 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 
 export default function HeroSection() {
-  const heroRef = useRef(null);
-  const targetPosRef = useRef({ x: 0, y: 0 });
-  const currentPosRef = useRef({ x: 0, y: 0 });
-  const animFrameIdRef = useRef(null);
-
-  // High-performance RAF lerp loop updating CSS variables directly (ZERO React re-renders)
-  useEffect(() => {
-    const heroEl = heroRef.current;
-    if (!heroEl) return;
-
-    const onMouseMove = (e) => {
-      const rect = heroEl.getBoundingClientRect();
-      targetPosRef.current = {
-        x: (e.clientX - rect.left) / rect.width - 0.5,
-        y: (e.clientY - rect.top) / rect.height - 0.5,
-      };
-    };
-
-    const onMouseLeave = () => {
-      targetPosRef.current = { x: 0, y: 0 };
-    };
-
-    const onScroll = () => {
-      if (heroEl) {
-        heroEl.style.setProperty('--scroll-y', `${window.scrollY * 0.12}px`);
-      }
-    };
-
-    const renderLoop = () => {
-      const { x: tx, y: ty } = targetPosRef.current;
-      const { x: cx, y: cy } = currentPosRef.current;
-
-      const nx = cx + (tx - cx) * 0.08;
-      const ny = cy + (ty - cy) * 0.08;
-
-      currentPosRef.current = { x: nx, y: ny };
-
-      heroEl.style.setProperty('--mouse-x', nx.toFixed(4));
-      heroEl.style.setProperty('--mouse-y', ny.toFixed(4));
-
-      animFrameIdRef.current = requestAnimationFrame(renderLoop);
-    };
-
-    heroEl.addEventListener('mousemove', onMouseMove, { passive: true });
-    heroEl.addEventListener('mouseleave', onMouseLeave, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    animFrameIdRef.current = requestAnimationFrame(renderLoop);
-
-    return () => {
-      heroEl.removeEventListener('mousemove', onMouseMove);
-      heroEl.removeEventListener('mouseleave', onMouseLeave);
-      window.removeEventListener('scroll', onScroll);
-      if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
-    };
-  }, []);
-
   return (
     <section
       id="hero"
-      ref={heroRef}
       className="relative z-10 w-full min-h-[92vh] lg:min-h-[98vh] flex flex-col justify-between pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-12 bg-[#F8F6F0] overflow-hidden select-none"
     >
       {/* ========================================================================= */}
-      {/* 1. 8K ULTRA-CLARITY SCENIC BACKDROP WITH 3D DEPTH & PARALLAX */}
+      {/* 1. FULL-BLEED IMMERSIVE 8K HERO BACKDROP (FILLS ENTIRE HERO - NO PARTITIONS) */}
       {/* ========================================================================= */}
-      <div
-        className="absolute inset-y-0 right-0 w-full lg:w-[70%] pointer-events-none z-0 overflow-hidden will-change-transform"
-        style={{
-          transform: 'translate3d(calc(var(--mouse-x, 0) * 16px), calc(var(--scroll-y, 0px) + var(--mouse-y, 0) * 12px), 0) scale(1.03)',
-        }}
-      >
-        <div className="relative w-full h-full">
-          <Image
-            src="/hero_clean_ultra.jpg"
-            alt="AI + Compassion Global Forum 2026 Artwork"
-            fill
-            priority
-            quality={100}
-            className="object-cover object-right-bottom opacity-95"
-            sizes="(max-width: 1024px) 100vw, 70vw"
-          />
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <Image
+          src="/hero_kinder_intelligence_8k.webp"
+          alt="AI + Compassion Global Forum 2026 Artwork"
+          fill
+          priority
+          unoptimized
+          className="object-cover object-right sm:object-[center_right] opacity-100"
+          sizes="100vw"
+        />
 
-          {/* Seamless Editorial Warm Ivory Gradient Masks for Crystal Readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#F8F6F0] via-[#F8F6F0]/80 lg:via-[#F8F6F0]/50 to-transparent w-full lg:w-[50%]" />
-          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#F8F6F0] via-[#F8F6F0]/70 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#F8F6F0] to-transparent" />
-        </div>
+        {/* Seamless Soft Atmospheric Blend for 100% Editorial Readability - Zero Seams */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[52%] bg-gradient-to-r from-[#F8F6F0]/92 via-[#F8F6F0]/65 to-transparent pointer-events-none" />
       </div>
-
-      {/* Ambient Glassmorphic Glow Orbs */}
-      <div
-        className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-emerald-300/15 blur-3xl pointer-events-none will-change-transform"
-        style={{
-          transform: 'translate3d(calc(var(--mouse-x, 0) * -25px), calc(var(--mouse-y, 0) * -25px), 0)',
-        }}
-      />
-      <div
-        className="absolute bottom-1/3 right-12 w-80 h-80 rounded-full bg-amber-400/10 blur-3xl pointer-events-none will-change-transform"
-        style={{
-          transform: 'translate3d(calc(var(--mouse-x, 0) * 20px), calc(var(--mouse-y, 0) * 20px), 0)',
-        }}
-      />
 
       {/* ========================================================================= */}
       {/* 2. MAIN 2-COLUMN RESPONSIVE LAYOUT (MINIMALISM + MAXIMALISM + GLASSMORPHISM) */}
@@ -118,7 +36,7 @@ export default function HeroSection() {
         <div className="lg:col-span-6 flex flex-col justify-center gap-5 sm:gap-6 z-20">
           
           {/* Main Editorial Headline */}
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 scroll-fade-up is-revealed">
             <h1 className="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#171918] leading-[1.02]">
               AI + Compassion
               <br />
@@ -129,7 +47,7 @@ export default function HeroSection() {
           </div>
 
           {/* Date & Starting Time with Terracotta Orange Accent Line */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 scroll-slide-left is-revealed">
             <span className="h-[2.5px] w-8 bg-[#C96F4A] rounded-full" />
             <p className="font-editorial text-xl sm:text-2xl md:text-3xl font-bold text-[#163B32]">
               October 2–3, 2026
@@ -140,20 +58,20 @@ export default function HeroSection() {
           </div>
 
           {/* Core Story Vision */}
-          <p className="text-sm sm:text-base md:text-lg text-[#5E625D] leading-relaxed max-w-xl font-normal text-balance">
+          <p className="text-sm sm:text-base md:text-lg text-[#5E625D] leading-relaxed max-w-xl font-normal text-balance scroll-fade-up is-revealed">
             A 24-hour global conversation for a planet-centered future (nature, humanity, &amp; AI/technology).
           </p>
 
-          {/* Action Buttons: WATCH LIVE NOW & REGISTER NOW */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 pt-2">
-            {/* Watch Live Now Button */}
+          {/* Action Buttons: WATCH THE RELAY & REGISTER NOW */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 pt-2 scroll-pop is-revealed">
+            {/* Watch the Relay Button */}
             <a
-              href="https://live.compassionai.io/"
+              href="https://www.youtube.com/@AICompassionGlobalForum"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 text-xs sm:text-sm font-bold tracking-wider uppercase text-[#F8F6F0] bg-[#163B32] hover:bg-[#0F2620] rounded-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
-              <span>WATCH LIVE NOW</span>
+              <span>WATCH THE RELAY</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
 
@@ -170,7 +88,7 @@ export default function HeroSection() {
           </div>
 
           {/* 4-Metric Statistics Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-[#D9DDD6]/80 text-[#171918] mt-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-[#D9DDD6]/80 text-[#171918] mt-2 scroll-fade-up scroll-stagger is-revealed">
             <div className="flex flex-col">
               <span className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[#163B32]">24h</span>
               <span className="text-[10px] sm:text-[11px] font-mono text-[#5E625D] uppercase tracking-wider font-semibold">Continuous Relay</span>

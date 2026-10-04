@@ -207,7 +207,7 @@ export default function PillarsSection() {
       <div className="w-full max-w-5xl mx-auto flex flex-col items-center gap-8 lg:gap-12">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center gap-2.5 max-w-2xl mx-auto">
+        <div className="flex flex-col items-center text-center gap-2.5 max-w-2xl mx-auto scroll-fade-down">
           <h2 className="font-editorial text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#172554]">
             Thematic Pillars
           </h2>
@@ -223,7 +223,7 @@ export default function PillarsSection() {
           {/* Left Column: 3 Pillars */}
           <div
             ref={leftColRef}
-            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-right order-2 lg:order-1"
+            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-right order-2 lg:order-1 scroll-slide-left"
           >
             {leftPillars.map((pillar) => {
               const isHovered = hoveredIdx === pillar.id;
@@ -254,7 +254,7 @@ export default function PillarsSection() {
           </div>
 
           {/* Center Column: 6-Segment Circular Donut SVG with Parallax Rotation */}
-          <div className="lg:col-span-4 flex items-center justify-center order-1 lg:order-2 py-1">
+          <div className="lg:col-span-4 flex items-center justify-center order-1 lg:order-2 py-1 scroll-pop">
             <div
               ref={mandalaRef}
               className="relative w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] select-none will-change-transform"
@@ -351,7 +351,7 @@ export default function PillarsSection() {
           {/* Right Column: 3 Pillars */}
           <div
             ref={rightColRef}
-            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-left order-3"
+            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-left order-3 scroll-slide-right"
           >
             {rightPillars.map((pillar) => {
               const isHovered = hoveredIdx === pillar.id;

@@ -12,14 +12,12 @@ import {
   GitCommit,
   Sparkles,
   ChevronRight,
-  Radio,
   User,
   Users,
 } from 'lucide-react';
 import {
   TIMEZONES,
   SCHEDULE_MATRIX,
-  getLiveRelayStatus,
 } from './scheduleData';
 
 export default function ScheduleSection() {
@@ -28,30 +26,12 @@ export default function ScheduleSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeNodeIdx, setActiveNodeIdx] = useState(0);
   const [northAmericaExpanded, setNorthAmericaExpanded] = useState(true);
-  const [liveRelay, setLiveRelay] = useState(() => getLiveRelayStatus());
 
   const timelineContainerRef = useRef(null);
   const itemsContainerRef = useRef(null);
   const firstNodeRef = useRef(null);
   const lastNodeRef = useRef(null);
   const [lineBounds, setLineBounds] = useState({ top: 24, height: 0 });
-
-  // Update live relay state in real-time (every 1 second)
-  useEffect(() => {
-    const updateLive = () => {
-      setLiveRelay(getLiveRelayStatus());
-    };
-    updateLive();
-    const interval = setInterval(updateLive, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const jumpToLiveBlock = () => {
-    const el = document.getElementById('live-relay-block');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
 
   // Find active timezone object
   const activeTzObj = TIMEZONES.find((t) => t.key === selectedTz) || TIMEZONES[0];
@@ -189,7 +169,7 @@ export default function ScheduleSection() {
       <div className="w-full max-w-7xl mx-auto flex flex-col gap-12">
         
         {/* Top Header in Dark Green Palette */}
-        <div className="flex flex-col items-center text-center gap-3 max-w-4xl mx-auto">
+        <div className="flex flex-col items-center text-center gap-3 max-w-4xl mx-auto scroll-fade-down">
           <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#163B32] leading-tight">
             Complete 24-Hour Schedule
           </h2>
@@ -200,7 +180,7 @@ export default function ScheduleSection() {
         </div>
 
         {/* Timezone Selector Buttons Row in Brand Dark Green */}
-        <div className="w-full flex flex-col items-center gap-4">
+        <div className="w-full flex flex-col items-center gap-4 scroll-fade-up">
           <div className="w-full overflow-x-auto pb-2 scrollbar-none">
             <div className="flex items-center justify-center min-w-max gap-2 sm:gap-3 px-2 mx-auto">
               {TIMEZONES.map((tz) => {
@@ -224,7 +204,7 @@ export default function ScheduleSection() {
           </div>
 
           {/* Control Bar: View Mode Switcher */}
-          <div className="w-full max-w-5xl flex items-center justify-center pt-2 border-b border-emerald-100 pb-4">
+          <div className="w-full max-w-5xl flex items-center justify-center pt-2 border-b border-emerald-100 pb-4 scroll-pop">
             <div className="flex items-center gap-2 bg-emerald-50/70 p-1 rounded-xl border border-emerald-200/70">
               <button
                 type="button"
@@ -263,49 +243,6 @@ export default function ScheduleSection() {
             ref={timelineContainerRef}
             className="w-full max-w-5xl mx-auto flex flex-col gap-12 py-6 relative"
           >
-            {/* Stage Progress HUD Bar with Real-Time 2-Hour Live Relay Sync */}
-            <div className="w-full flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 px-4 sm:px-5 py-3 rounded-2xl bg-gradient-to-r from-emerald-50 via-emerald-100/50 to-emerald-50 border border-emerald-200 shadow-sm">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="relative flex h-3 w-3 shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
-                </span>
-                
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-xs sm:text-sm font-black text-[#163B32] uppercase tracking-wider">
-                    LIVE: Stage {String(liveRelay.stageNumber).padStart(2, '0')} of 12 • {liveRelay.segment}
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-slate-600 font-medium">
-                    • ({liveRelay.minutesRemaining}m left in 2h stage • Next: {liveRelay.nextSegment})
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between md:justify-end gap-3 shrink-0">
-                <div className="flex items-center gap-2">
-                  <div className="w-24 sm:w-36 h-2 bg-emerald-200/80 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-[#163B32] via-[#22C55E] to-[#C9A96A] transition-all duration-300 rounded-full"
-                      style={{ width: `${Math.max(5, liveRelay.totalProgressPercent)}%` }}
-                    />
-                  </div>
-                  <span className="font-mono text-xs font-bold text-[#163B32]">
-                    {liveRelay.totalProgressPercent}%
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={jumpToLiveBlock}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-[#163B32] text-white hover:bg-[#0F2620] transition-all shadow-xs active:scale-95 cursor-pointer whitespace-nowrap"
-                  title="Scroll to active live relay block"
-                >
-                  <Radio className="w-3 h-3 text-rose-300 animate-pulse" />
-                  <span>Jump to Live</span>
-                </button>
-              </div>
-            </div>
-
             {/* Vertical Timeline Structure */}
             <div className="relative w-full max-w-4xl mx-auto pt-2 pb-2">
               
@@ -337,15 +274,12 @@ export default function ScheduleSection() {
 
                   if (isGroup) {
                     // Unified North America Node containing Blocks 9, 10, and 11
-                    const isLiveGroup = liveRelay.groupId === 'group-north-america' || (liveRelay.activeBlockId && (liveRelay.activeBlockId.startsWith('block-9') || liveRelay.activeBlockId.startsWith('block-10') || liveRelay.activeBlockId.startsWith('block-11')));
-
                     return (
                       <div
                         key={item.id}
-                        id={isLiveGroup ? "live-relay-block" : undefined}
                         className={`relative flex items-start gap-6 md:gap-0 transition-all duration-500 ${
                           isEven ? 'md:flex-row' : 'md:flex-row-reverse'
-                        } ${isPassed || isLiveGroup ? 'opacity-100' : 'opacity-70'}`}
+                        } ${isPassed ? 'opacity-100' : 'opacity-70'}`}
                       >
                         {/* Content Box */}
                         <div
@@ -355,22 +289,13 @@ export default function ScheduleSection() {
                         >
                           <div
                             className={`flex flex-col gap-4 rounded-3xl p-5 sm:p-7 transition-all duration-300 border ${
-                              isLiveGroup
-                                ? 'bg-white border-2 border-emerald-600 ring-4 ring-emerald-500/20 shadow-xl scale-[1.02]'
-                                : isCurrent
+                              isCurrent
                                 ? 'bg-white border-[#163B32] shadow-xl shadow-emerald-950/10 scale-[1.02] ring-2 ring-emerald-200'
                                 : 'bg-[#FAFCFA] hover:bg-white border-emerald-200 shadow-sm hover:shadow-lg'
                             }`}
                           >
                             {/* Group Header */}
                             <div className={`flex flex-wrap items-center gap-2 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
-                              {isLiveGroup && (
-                                <span className="inline-flex items-center gap-1 font-mono text-xs font-black uppercase tracking-wider text-white bg-rose-600 px-3 py-1 rounded-full shadow-md animate-pulse">
-                                  <Radio className="w-3.5 h-3.5" />
-                                  LIVE NOW
-                                </span>
-                              )}
-
                               <span className="font-mono text-xs font-bold uppercase tracking-wider text-white bg-[#163B32] px-3.5 py-1 rounded-full shadow-xs">
                                 BLOCKS 09, 10 &amp; 11 • NORTH AMERICA
                               </span>
@@ -400,50 +325,19 @@ export default function ScheduleSection() {
                               </div>
                             </div>
 
-                            {/* Live Stage Progress Indicator if Live */}
-                            {isLiveGroup && (
-                              <div className="mt-1 flex flex-col gap-1.5 bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/80 text-left">
-                                <div className="flex items-center justify-between text-xs font-bold text-[#163B32]">
-                                  <span className="flex items-center gap-1.5">
-                                    <Radio className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
-                                    <span>Live Stage Progress ({liveRelay.stageProgressPercent}%)</span>
-                                  </span>
-                                  <span className="font-mono text-[11px] text-slate-600 font-semibold">
-                                    {liveRelay.minutesRemaining} min remaining
-                                  </span>
-                                </div>
-                                <div className="w-full h-1.5 bg-emerald-200 rounded-full overflow-hidden">
-                                  <div
-                                    className="h-full bg-gradient-to-r from-emerald-600 to-[#C9A96A] rounded-full transition-all duration-300"
-                                    style={{ width: `${liveRelay.stageProgressPercent}%` }}
-                                  />
-                                </div>
-                              </div>
-                            )}
-
                             {/* Sub-Blocks List (Blocks 9, 10, 11) */}
                             {northAmericaExpanded && (
                               <div className="flex flex-col gap-3 pt-2 text-left">
                                 {item.blocks.map((subBlock) => {
                                   const subTime = subBlock.times[selectedTz] || subBlock.times.UTC;
-                                  const isSubLive = liveRelay.activeBlockId === subBlock.id || liveRelay.subBlockId === subBlock.id;
 
                                   return (
                                     <div
                                       key={subBlock.id}
-                                      className={`p-4 rounded-2xl bg-white border transition-all flex flex-col gap-2 ${
-                                        isSubLive
-                                          ? 'border-emerald-500 ring-2 ring-emerald-300 shadow-md'
-                                          : 'border-emerald-100/90 shadow-2xs hover:border-emerald-300'
-                                      }`}
+                                      className="p-4 rounded-2xl bg-white border border-emerald-100/90 shadow-2xs hover:border-emerald-300 transition-all flex flex-col gap-2"
                                     >
                                       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2">
                                         <div className="flex items-center gap-2">
-                                          {isSubLive && (
-                                            <span className="font-mono text-[10px] font-black uppercase text-white bg-rose-600 px-2 py-0.5 rounded-full animate-pulse">
-                                              LIVE
-                                            </span>
-                                          )}
                                           <span className="font-mono text-xs font-bold text-[#163B32] bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
                                             {subBlock.blockLabel}
                                           </span>
@@ -485,9 +379,7 @@ export default function ScheduleSection() {
                         >
                           <div
                             className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-mono text-[10px] sm:text-xs font-bold transition-all duration-300 shadow-sm ${
-                              isLiveGroup
-                                ? 'bg-rose-600 text-white ring-4 ring-rose-200 scale-125 shadow-lg shadow-rose-900/30 animate-pulse'
-                                : isCurrent
+                              isCurrent
                                 ? 'bg-[#163B32] text-white ring-4 ring-emerald-200 scale-125 shadow-lg shadow-emerald-900/30'
                                 : isPassed
                                 ? 'bg-[#2D6A4F] text-white ring-4 ring-emerald-100 scale-105'
@@ -508,17 +400,15 @@ export default function ScheduleSection() {
                   const block = item.block;
                   const timeVal = block.times[selectedTz] || block.times.UTC;
                   const isSpecial = block.isSpecial;
-                  const isLive = liveRelay.activeBlockId === block.id;
 
                   return (
                     <div
                       key={block.id}
-                      id={isLive ? "live-relay-block" : undefined}
                       className={`relative flex items-start gap-6 md:gap-0 transition-all duration-500 ${
                         isEven
                           ? 'md:flex-row'
                           : 'md:flex-row-reverse'
-                      } ${isPassed || isLive ? 'opacity-100' : 'opacity-70'}`}
+                      } ${isPassed ? 'opacity-100' : 'opacity-70'}`}
                     >
                       {/* Content Box */}
                       <div
@@ -530,9 +420,7 @@ export default function ScheduleSection() {
                       >
                         <div
                           className={`flex flex-col gap-2.5 rounded-2xl p-5 sm:p-6 transition-all duration-300 border ${
-                            isLive
-                              ? 'bg-white border-2 border-emerald-600 ring-4 ring-emerald-500/20 shadow-xl scale-[1.02]'
-                              : isCurrent
+                            isCurrent
                               ? 'bg-white border-[#163B32] shadow-xl shadow-emerald-950/10 scale-[1.02] ring-2 ring-emerald-200'
                               : isSpecial
                               ? 'bg-amber-50/80 border-amber-200 shadow-xs'
@@ -545,13 +433,6 @@ export default function ScheduleSection() {
                               isEven ? 'md:justify-end' : 'md:justify-start'
                             }`}
                           >
-                            {isLive && (
-                              <span className="inline-flex items-center gap-1 font-mono text-xs font-black uppercase tracking-wider text-white bg-rose-600 px-3 py-1 rounded-full shadow-md animate-pulse">
-                                <Radio className="w-3.5 h-3.5" />
-                                LIVE NOW
-                              </span>
-                            )}
-
                             <span className="font-mono text-xs font-bold uppercase tracking-wider text-white bg-[#163B32] px-3 py-1 rounded-full shadow-xs">
                               {block.blockLabel || block.blockNumber} • {block.segment}
                             </span>
@@ -571,27 +452,6 @@ export default function ScheduleSection() {
                           <h4 className="font-editorial text-base sm:text-lg md:text-xl font-bold text-slate-900 leading-snug">
                             {block.region}
                           </h4>
-
-                          {/* Live Stage Progress Indicator if Live */}
-                          {isLive && (
-                            <div className="mt-1 flex flex-col gap-1.5 bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/80 text-left">
-                              <div className="flex items-center justify-between text-xs font-bold text-[#163B32]">
-                                <span className="flex items-center gap-1.5">
-                                  <Radio className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
-                                  <span>Stage Progress ({liveRelay.stageProgressPercent}%)</span>
-                                </span>
-                                <span className="font-mono text-[11px] text-slate-600 font-semibold">
-                                  {liveRelay.minutesRemaining} min remaining in this 2-hour block
-                                </span>
-                              </div>
-                              <div className="w-full h-1.5 bg-emerald-200 rounded-full overflow-hidden">
-                                <div
-                                  className="h-full bg-gradient-to-r from-emerald-600 to-[#C9A96A] rounded-full transition-all duration-300"
-                                  style={{ width: `${liveRelay.stageProgressPercent}%` }}
-                                />
-                              </div>
-                            </div>
-                          )}
 
                           {/* Producers, Speakers & Theme Section */}
                           {(block.producers?.length > 0 || block.speakers?.length > 0 || block.theme) && (
@@ -642,9 +502,7 @@ export default function ScheduleSection() {
                       >
                         <div
                           className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-mono text-[10px] sm:text-xs font-bold transition-all duration-300 shadow-sm ${
-                            isLive
-                              ? 'bg-rose-600 text-white ring-4 ring-rose-200 scale-125 shadow-lg shadow-rose-900/30 animate-pulse'
-                              : isCurrent
+                            isCurrent
                               ? 'bg-[#163B32] text-white ring-4 ring-emerald-200 scale-125 shadow-lg shadow-emerald-900/30'
                               : isPassed
                               ? 'bg-[#2D6A4F] text-white ring-4 ring-emerald-100 scale-105'
@@ -701,15 +559,12 @@ export default function ScheduleSection() {
                 <tbody className="divide-y divide-emerald-100">
                   {SCHEDULE_MATRIX.map((row, idx) => {
                     const isSpecial = row.isSpecial;
-                    const isLiveRow = liveRelay.activeBlockId === row.id || (row.id === 'block-9-11' && liveRelay.groupId === 'group-north-america');
 
                     return (
                       <tr
                         key={idx}
                         className={`transition-colors duration-150 ${
-                          isLiveRow
-                            ? 'bg-emerald-50/90 ring-2 ring-emerald-500/50 font-semibold'
-                            : isSpecial
+                          isSpecial
                             ? 'bg-amber-50/70 hover:bg-amber-100/70 font-semibold'
                             : idx % 2 === 0
                             ? 'bg-[#F9FAF8] hover:bg-emerald-50/40'
@@ -718,9 +573,7 @@ export default function ScheduleSection() {
                       >
                         <td
                           className={`py-3 px-4 font-semibold text-slate-900 border-r border-slate-200 sticky left-0 z-10 ${
-                            isLiveRow
-                              ? 'bg-emerald-100/90 text-[#163B32]'
-                              : isSpecial
+                            isSpecial
                               ? 'bg-amber-50 text-[#78350F]'
                               : idx % 2 === 0
                               ? 'bg-[#F9FAF8]'
@@ -729,11 +582,6 @@ export default function ScheduleSection() {
                         >
                           <div className="flex flex-col gap-0.5">
                             <div className="flex items-center gap-1.5">
-                              {isLiveRow && (
-                                <span className="inline-flex items-center gap-1 font-mono text-[9px] font-black uppercase text-white bg-rose-600 px-1.5 py-0.5 rounded animate-pulse">
-                                  LIVE
-                                </span>
-                              )}
                               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#163B32]">
                                 {row.blockLabel || row.blockNumber} • {row.segment}
                               </span>

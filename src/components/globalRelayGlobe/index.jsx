@@ -138,7 +138,7 @@ export default function GlobalRelayGlobeSection() {
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
           
           {/* Left: 3D Photorealistic Interactive Earth Globe (6 Cols) */}
-          <div className="lg:col-span-6 flex flex-col items-center justify-center relative w-full">
+          <div className="lg:col-span-6 flex flex-col items-center justify-center relative w-full scroll-pop">
             <div className="relative w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[460px] aspect-square flex items-center justify-center">
               <ThreeEarthGlobe
                 activeIndex={activeIndex}
@@ -148,7 +148,7 @@ export default function GlobalRelayGlobeSection() {
           </div>
 
           {/* Right: Dynamic Producer & Inquiry Information Card (6 Cols) */}
-          <div className="lg:col-span-6 bg-white rounded-3xl p-5 sm:p-7 border border-[#D9DDD6] shadow-xl flex flex-col gap-4 backdrop-blur-md transition-all duration-300">
+          <div className="lg:col-span-6 bg-white rounded-3xl p-5 sm:p-7 border border-[#D9DDD6] shadow-xl flex flex-col gap-4 backdrop-blur-md transition-all duration-300 scroll-slide-right">
             {/* Region Title, City & UTC Timing */}
             <div className="flex flex-col gap-1.5">
               <div className="flex flex-wrap items-center justify-between gap-2">

@@ -26,28 +26,22 @@ export default function SmoothScrollProvider({ children }) {
       gsap.registerPlugin(ScrollTrigger);
 
       const lenis = new Lenis({
-        duration: 1.25,
+        duration: 0.9,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.15,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.2,
         infinite: false,
       });
 
       lenisRef.current = lenis;
       window.__lenis = lenis;
 
-      // Synchronize Lenis with GSAP ScrollTrigger & update dynamic CSS custom properties
-      lenis.on('scroll', (e) => {
+      // Synchronize Lenis with GSAP ScrollTrigger with zero style recalculation overhead
+      lenis.on('scroll', () => {
         ScrollTrigger.update();
-        if (typeof document !== 'undefined') {
-          const root = document.documentElement;
-          root.style.setProperty('--scroll-y-px', `${e.scroll}px`);
-          root.style.setProperty('--scroll-velocity', `${e.velocity}`);
-          root.style.setProperty('--scroll-direction', `${e.direction}`);
-        }
       });
 
       const tickerCallback = (time) => {
@@ -55,28 +49,34 @@ export default function SmoothScrollProvider({ children }) {
       };
 
       gsap.ticker.add(tickerCallback);
-      gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(500, 33);
 
       // Automated Viewport Reveal Observer for smooth dynamic scrolling reveals
+      const scrollSelector =
+        '.reveal-on-scroll, [data-reveal], .scroll-fade-up, .scroll-fade-down, .scroll-pop, .scroll-popup, .scroll-fade-in, .scroll-slide-left, .scroll-slide-right';
+
       const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('is-revealed');
-              // Optionally unobserve after revealing for optimal performance
-              revealObserver.unobserve(entry.target);
+              if (!entry.target.hasAttribute('data-scroll-repeat')) {
+                revealObserver.unobserve(entry.target);
+              }
+            } else if (entry.target.hasAttribute('data-scroll-repeat')) {
+              entry.target.classList.remove('is-revealed');
             }
           });
         },
         {
           root: null,
-          rootMargin: '0px 0px -8% 0px',
-          threshold: 0.1,
+          rootMargin: '0px 0px -6% 0px',
+          threshold: 0.08,
         }
       );
 
       const observeElements = () => {
-        const elements = document.querySelectorAll('.reveal-on-scroll, [data-reveal]');
+        const elements = document.querySelectorAll(scrollSelector);
         elements.forEach((el) => {
           if (!el.classList.contains('is-revealed')) {
             revealObserver.observe(el);
@@ -85,7 +85,12 @@ export default function SmoothScrollProvider({ children }) {
       };
 
       observeElements();
-      const mutationObserver = new MutationObserver(observeElements);
+      let mutationTimeout;
+      const debouncedObserve = () => {
+        if (mutationTimeout) clearTimeout(mutationTimeout);
+        mutationTimeout = setTimeout(observeElements, 150);
+      };
+      const mutationObserver = new MutationObserver(debouncedObserve);
       mutationObserver.observe(document.body, { childList: true, subtree: true });
 
       return () => {

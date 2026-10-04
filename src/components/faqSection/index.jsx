@@ -61,14 +61,14 @@ export default function FaqSection() {
           className="w-full bg-[#FAF9F5] rounded-3xl sm:rounded-[40px] border border-[#ECE9E0] py-16 sm:py-20 px-6 sm:px-10 lg:px-14 shadow-xs"
         >
           {/* Centered Heading */}
-          <div className="text-center flex flex-col items-center gap-3 mb-14 sm:mb-16">
+          <div className="text-center flex flex-col items-center gap-3 mb-14 sm:mb-16 scroll-fade-down">
             <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#163B32]">
               Frequently Asked Questions
             </h2>
           </div>
 
           {/* 3-Column FAQ Accordion Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-14 gap-y-2 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-14 gap-y-2 items-start scroll-fade-up scroll-stagger">
             {faqColumns.map((col) => (
               <div key={col.colIndex} className="flex flex-col">
                 {col.items.map((item) => {

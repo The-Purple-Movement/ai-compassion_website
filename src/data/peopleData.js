@@ -1448,6 +1448,17 @@ Originally from Sydney, Mitch earned his master's in international business in A
 
 Mitch treats ethics as a design principle, not an afterthought. Initiatives facilitated by PocketSeed have helped remove 500,000 plastic bottles from the ocean, offset 13.3 million kilograms of carbon emissions, and deploy 14,424 kelp plants. He is an alumnus of the Antler Japan (JPN4) founder program. His message to audiences is simple: dig a bit deeper into why things are being said.`,
   },
+  {
+    slug: 'tamami-tono',
+    name: 'Tamami Tono',
+    type: 'speaker',
+    role: 'Speaker',
+    title: 'Composer / Musician',
+    img: '/speakers/tamami-tono.png',
+    imgPosition: 'center 20%',
+    tags: ['Composer', 'Musician', 'Gagaku', 'Breathing Media', 'Silk Road Ensemble'],
+    bio: `Tamami Tono is an award-winning composer and graduate of Kunitachi College of Music and Keio University. Former resident composer of Yo-Yo Ma's Silk Road Ensemble and CCMIX, she has been a member of Reigakusha Gagaku Ensemble since 1990, performing traditional Gagaku and contemporary music. Winner of National Theater Composition Prize and ISCM awards, Tono creates multimedia Breathing Media performances combining traditional Gagaku with modern electronics, and has performed at Tanglewood and Lincoln Center festivals.`,
+  },
 ];
 
 // Helper selectors
