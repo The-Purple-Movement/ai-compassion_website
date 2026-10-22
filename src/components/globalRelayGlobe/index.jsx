@@ -9,50 +9,28 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
-  Radio,
   User,
   ExternalLink,
   Layers,
 } from 'lucide-react';
-import ThreeEarthGlobe from './ThreeEarthGlobe';
+import dynamic from 'next/dynamic';
 import { RELAY_REGIONS } from './relayData';
-import { getLiveRelayStatus } from '@/components/scheduleSection/scheduleData';
+
+const ThreeEarthGlobe = dynamic(() => import('./ThreeEarthGlobe'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex flex-col items-center justify-center rounded-full bg-[#102A24]/10 border border-[#163B32]/10 animate-pulse aspect-square">
+      <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-dashed border-[#163B32]/30 animate-spin" style={{ animationDuration: '10s' }} />
+      <span className="font-mono text-xs text-[#163B32]/70 mt-3 font-semibold tracking-wider uppercase">Loading 3D Globe...</span>
+    </div>
+  ),
+});
 
 export default function GlobalRelayGlobeSection() {
-  const [activeIndex, setActiveIndex] = useState(() => {
-    try {
-      const live = getLiveRelayStatus();
-      const idx = RELAY_REGIONS.findIndex((r) => r.id === live.globeRegionId);
-      return idx >= 0 ? idx : 2; // Southeast Asia default
-    } catch {
-      return 2;
-    }
-  });
-  const [liveRegionId, setLiveRegionId] = useState(() => {
-    try {
-      return getLiveRelayStatus().globeRegionId;
-    } catch {
-      return 3;
-    }
-  });
+  const [activeIndex, setActiveIndex] = useState(0);
   const [localTime, setLocalTime] = useState('');
 
-  // Periodically check live region
-  useEffect(() => {
-    const checkLive = () => {
-      try {
-        const live = getLiveRelayStatus();
-        setLiveRegionId(live.globeRegionId);
-      } catch (e) {
-        // ignore
-      }
-    };
-    checkLive();
-    const interval = setInterval(checkLive, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Live Local Time ticker for the active region
+  // Local Time ticker for the selected region
   useEffect(() => {
     const updateTime = () => {
       const region = RELAY_REGIONS[activeIndex] || RELAY_REGIONS[0];
@@ -157,12 +135,6 @@ export default function GlobalRelayGlobeSection() {
                   <span>{activeRegion.city}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  {activeRegion.id === liveRegionId && (
-                    <span className="inline-flex items-center gap-1 font-mono text-[11px] font-black uppercase tracking-wider text-white bg-rose-600 px-2.5 py-0.5 rounded-full shadow-xs animate-pulse">
-                      <Radio className="w-3 h-3" />
-                      LIVE NOW
-                    </span>
-                  )}
                   {activeRegion.utcTiming && (
                     <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#163B32]/10 border border-[#163B32]/20 text-[#163B32] text-xs font-mono font-bold tracking-tight">
                       <Clock className="w-3.5 h-3.5 text-[#163B32]" />
@@ -178,155 +150,79 @@ export default function GlobalRelayGlobeSection() {
 
             {/* Theme */}
             {activeRegion.theme && (
-              <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80 flex flex-col gap-0.5">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#C96F4A]">
-                  Theme
-                </span>
-                <p className="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">
-                  {activeRegion.theme}
-                </p>
+              <div className="text-xs sm:text-sm text-slate-700 italic border-l-2 border-[#C96F4A] pl-3 py-0.5">
+                &ldquo;{activeRegion.theme}&rdquo;
               </div>
             )}
 
-            {/* Operational Coverage (Multi-Block Overview if applicable) */}
-            {activeRegion.coverage && (
-              <div className="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-100/90 flex flex-col gap-1.5">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#163B32] flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-[#22C55E]" />
-                  <span>Coverage &amp; Relay Blocks</span>
+            {/* Core Inquiries List */}
+            {activeRegion.inquiries && activeRegion.inquiries.length > 0 && (
+              <div className="space-y-1.5 py-1">
+                <span className="font-mono text-[11px] font-bold text-[#163B32] uppercase tracking-wider block">
+                  Core Inquiries:
                 </span>
-                <ul className="space-y-1 text-xs text-slate-700 font-medium">
-                  {activeRegion.coverage.map((cov, cIdx) => (
-                    <li key={cIdx} className="flex items-start gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C96F4A] mt-1.5 shrink-0" />
-                      <span>{cov}</span>
+                <ul className="space-y-1">
+                  {activeRegion.inquiries.map((inq, idx) => (
+                    <li key={idx} className="text-xs sm:text-sm text-[#5E625D] flex items-start gap-2">
+                      <span className="text-[#C96F4A] font-bold mt-0.5">•</span>
+                      <span>{inq}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
 
-            {/* Producer / Convener Profile Card */}
-            <div className="p-4 rounded-2xl bg-[#F8F6F0] border border-[#E6E9E4] flex flex-row items-start gap-4">
-              
-              {/* Portrait Image or Monogram */}
-              <div className="relative w-14 h-14 sm:w-16 sm:h-16 lg:w-18 lg:h-18 shrink-0 rounded-2xl overflow-hidden border border-[#D9DDD6] bg-white shadow-xs group">
-                {producer.img ? (
-                  <Image
-                    src={producer.img}
-                    alt={producer.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 56px, 72px"
-                  />
-                ) : producer.available || producer.name.toLowerCase().includes('available') ? (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-amber-50 border border-dashed border-amber-300 text-amber-800">
-                    <User className="w-6 h-6 text-amber-700 opacity-80" />
-                  </div>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#163B32]/10 via-[#F8F6F0] to-[#C9A96A]/20 text-[#163B32]">
-                    <span className="font-editorial text-sm sm:text-base font-bold tracking-wider text-[#163B32]">
-                      {producer.name
-                        .split(' ')
-                        .map((n) => n[0])
-                        .filter(Boolean)
-                        .slice(0, 2)
-                        .join('')}
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              {/* Producer Details */}
-              <div className="flex flex-col gap-1 text-left flex-1 min-w-0">
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      producer.available || producer.name.toLowerCase().includes('available')
-                        ? 'bg-amber-100 text-amber-900 border border-amber-300'
-                        : producer.role.toLowerCase().includes('lead')
-                        ? 'bg-blue-50 text-blue-900 border border-blue-200'
-                        : 'bg-emerald-100 text-[#163B32] border border-emerald-200'
-                    }`}>
+            {/* Producer / Lead Box */}
+            <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="relative w-12 h-12 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
+                  {producer.img ? (
+                    <Image
+                      src={producer.img}
+                      alt={producer.name}
+                      fill
+                      className="object-cover"
+                      sizes="48px"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-emerald-50 text-[#163B32]">
+                      <User className="w-5 h-5" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-mono text-[#5E625D] uppercase tracking-wider">
+                    Regional Producer
+                  </span>
+                  <span className="font-editorial text-sm font-bold text-[#171918]">
+                    {producer.name}
+                  </span>
+                  {producer.role && (
+                    <span className="text-xs text-[#5E625D] font-light truncate max-w-[200px] sm:max-w-xs">
                       {producer.role}
                     </span>
-                  </div>
-                  
-                  {producer.slug ? (
-                    <Link
-                      href={`/${producer.slug}`}
-                      className="font-editorial text-sm sm:text-base font-bold text-[#163B32] hover:text-[#C96F4A] transition-colors leading-tight inline-flex items-center gap-1"
-                    >
-                      <span>{producer.name}</span>
-                      <ExternalLink className="w-3 h-3 opacity-60" />
-                    </Link>
-                  ) : (
-                    <h4 className="font-editorial text-sm sm:text-base font-bold text-[#163B32] leading-tight">
-                      {producer.name}
-                    </h4>
                   )}
-                  
-                  <p className="text-[10px] sm:text-xs font-mono text-[#C96F4A] font-semibold uppercase tracking-wider">
-                    {producer.role}
-                  </p>
-                </div>
-
-                <p className="text-xs text-[#5E625D] leading-relaxed">
-                  {producer.bio}
-                </p>
-
-                {/* Thematic Tags */}
-                <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                  {producer.tags?.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 rounded-full bg-white border border-[#D9DDD6] text-[10px] font-mono text-[#171918]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
                 </div>
               </div>
+
+              {producer.slug && (
+                <Link
+                  href={`/${producer.slug}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#163B32] text-white text-xs font-mono font-bold hover:bg-[#0F2620] transition-colors shrink-0 cursor-pointer"
+                >
+                  <span>Profile</span>
+                  <ExternalLink className="w-3 h-3" />
+                </Link>
+              )}
             </div>
 
-            {/* Segment & Operational Details & Next Segment Action */}
-            <div className="flex items-center justify-between pt-1 border-t border-[#E6E9E4]">
-              <span className="text-xs font-mono text-[#5E625D]">
-                Segment: <strong className="text-[#163B32]">{activeRegion.segment}</strong>
-              </span>
-
-              <button
-                type="button"
-                onClick={nextRegion}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#163B32] hover:bg-[#0F2620] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs hover:shadow-md cursor-pointer group"
-              >
-                <span>Next Segment</span>
-                <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </button>
+            {/* Regional Local Time Bar */}
+            <div className="flex items-center justify-between text-xs text-[#5E625D] font-mono bg-slate-50 px-3.5 py-2 rounded-2xl border border-slate-200/80 mt-1">
+              <span>Local Time in {activeRegion.city}:</span>
+              <span className="font-bold text-[#163B32]">{localTime}</span>
             </div>
           </div>
-        </div>
 
-        {/* 10 Planetary Segment Selector Pills */}
-        <div className="w-full flex items-center justify-between gap-1.5 overflow-x-auto py-2 scrollbar-none select-none">
-          {RELAY_REGIONS.map((r, idx) => {
-            const isCurrent = activeIndex === idx;
-            return (
-              <button
-                key={r.id}
-                onClick={() => handleSelectRegion(idx)}
-                className={`shrink-0 flex items-center justify-center px-3 sm:px-4 py-1.5 rounded-full border text-xs font-mono transition-all duration-200 cursor-pointer ${
-                  isCurrent
-                    ? 'bg-[#163B32] text-[#F8F6F0] border-[#163B32] shadow-sm font-bold scale-105'
-                    : 'bg-white text-[#5E625D] border-[#D9DDD6] hover:text-[#171918] hover:border-[#163B32]/40'
-                }`}
-                title={`Segment ${r.id} — ${r.segment} (${r.region})`}
-              >
-                <span>{String(r.id).padStart(2, '0')}</span>
-                <span className="hidden md:inline ml-1.5 opacity-90">{r.segment}</span>
-              </button>
-            );
-          })}
         </div>
 
       </div>

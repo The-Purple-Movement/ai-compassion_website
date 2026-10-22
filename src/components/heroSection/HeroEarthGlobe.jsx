@@ -112,7 +112,7 @@ export default function HeroEarthGlobe() {
     // Load Photorealistic High-Res Texture Maps
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(
-      '/earth/earth_color_2k.jpg',
+      '/earth/earth_color_2k.webp',
       (tex) => {
         tex.colorSpace = THREE.SRGBColorSpace;
         sphereMat.map = tex;
@@ -124,7 +124,7 @@ export default function HeroEarthGlobe() {
       }
     );
 
-    textureLoader.load('/earth/earth_bump_2k.jpg', (bumpTex) => {
+    textureLoader.load('/earth/earth_bump_2k.webp', (bumpTex) => {
       sphereMat.bumpMap = bumpTex;
       sphereMat.bumpScale = 0.05;
       sphereMat.needsUpdate = true;

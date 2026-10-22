@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
+
 const MARQUEE_ITEMS = [
   'ONE WORLD',
   '12 REGIONS',
@@ -13,10 +15,10 @@ const MARQUEE_ITEMS = [
 
 export default function ContinuousMarquee({ reverse = false, variant = 'light' }) {
   const isDark = variant === 'dark';
+  const marqueeRef = useRef(null);
   const animationClass = reverse ? 'animate-marquee-right' : 'animate-marquee-left';
-
-  // Sequence repeated to fill wide viewports
   const sequence = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+  const currentDuration = reverse ? 62 : 58;
 
   return (
     <div
@@ -26,7 +28,14 @@ export default function ContinuousMarquee({ reverse = false, variant = 'light' }
           : 'bg-[#F2F3EF] border-[#E6E9E4] text-[#163B32]'
       }`}
     >
-      <div className={animationClass}>
+      <div 
+        ref={marqueeRef}
+        className={animationClass}
+        style={{ 
+          animationDuration: `${currentDuration}s`,
+          transition: 'animation-duration 0.25s ease-out'
+        }}
+      >
         {/* Two identical groups create an endless, flawless -50% loop */}
         {[0, 1].map((groupKey) => (
           <div key={groupKey} className="flex items-center shrink-0">

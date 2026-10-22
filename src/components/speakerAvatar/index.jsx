@@ -59,12 +59,7 @@ export default function SpeakerAvatar({
         </div>
       </div>
 
-      {/* Bottom tag */}
-      <div className="relative z-10 pb-0.5">
-        <span className="text-[7px] sm:text-[8px] font-mono tracking-widest uppercase text-emerald-200/90 font-semibold">
-          SPEAKER
-        </span>
-      </div>
+
     </div>
   );
 }

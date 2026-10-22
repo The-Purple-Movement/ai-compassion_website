@@ -22,21 +22,18 @@ export default function ProducersSection() {
       if (gridRef.current) {
         gsap.fromTo(
           gridRef.current.children,
-          { opacity: 0, y: 35, scale: 0.96 },
+          { opacity: 0, y: 35, scale: 0.95 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
             duration: 0.7,
-            stagger: {
-              each: 0.08,
-              grid: 'auto',
-            },
+            stagger: 0.08,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: gridRef.current,
               start: 'top 85%',
-              toggleActions: 'play none none reverse',
+              toggleActions: 'play none none none',
             },
           }
         );
@@ -55,7 +52,7 @@ export default function ProducersSection() {
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center gap-10 sm:gap-14">
         
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-3 max-w-3xl mx-auto">
+        <div className="flex flex-col items-center text-center gap-3 max-w-3xl mx-auto scroll-fade-down">
           <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#163B32] leading-tight">
             Producers &amp; Co-Producers
           </h2>
@@ -74,7 +71,7 @@ export default function ProducersSection() {
             <Link
               key={person.slug}
               href={`/${person.slug}`}
-              className="w-full bg-[#FAFCFA] hover:bg-white rounded-3xl border border-emerald-100/90 hover:border-[#163B32]/40 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-5 sm:p-6 flex flex-col justify-between group cursor-pointer text-left relative overflow-hidden"
+              className="w-full bg-[#FAFCFA] hover:bg-white rounded-3xl border border-emerald-100/90 hover:border-[#163B32]/40 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-5 sm:p-6 flex flex-col justify-between group cursor-pointer text-left relative overflow-hidden will-change-transform"
             >
               <div className="flex flex-col gap-4">
                 {/* Headshot Portrait */}
@@ -132,3 +129,4 @@ export default function ProducersSection() {
     </section>
   );
 }
+

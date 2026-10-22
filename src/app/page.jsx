@@ -1,16 +1,30 @@
+'use client';
+
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/heroSection";
 import ContinuousMarquee from "@/components/continuousMarquee";
 import AboutSection from "@/components/aboutSection";
 import PillarsSection from "@/components/pillarsSection";
-import GlobalRelayGlobeSection from "@/components/globalRelayGlobe";
 import ProducersSection from "@/components/producers";
 import SpeakerSection from "@/components/speakerSection";
 import MeetTheTeamCTA from "@/components/meetTheTeamCTA";
-import ScheduleSection from "@/components/scheduleSection";
-import MediaSection from "@/components/mediaSection";
-import PartnersAndSponsors from "@/components/partnersAndSponsors";
-import FaqSection from "@/components/faqSection";
 import JourneyIndicator from "@/components/journeyIndicator";
+
+const GlobalRelayGlobeSection = dynamic(() => import("@/components/globalRelayGlobe"), {
+  ssr: false,
+});
+const ScheduleSection = dynamic(() => import("@/components/scheduleSection"), {
+  ssr: false,
+});
+const MediaSection = dynamic(() => import("@/components/mediaSection"), {
+  ssr: false,
+});
+const PartnersAndSponsors = dynamic(() => import("@/components/partnersAndSponsors"), {
+  ssr: false,
+});
+const FaqSection = dynamic(() => import("@/components/faqSection"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (

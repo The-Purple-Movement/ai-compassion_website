@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import logoImage from '@/../public/logoai.png';
+import logoImage from '@/../public/logoai.webp';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 export default function Navbar() {

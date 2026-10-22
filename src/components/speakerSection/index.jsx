@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowLeft, ExternalLink, X, UserCheck } from 'lucide-react';
+import { ArrowLeft, ExternalLink, X, UserCheck, Sparkles } from 'lucide-react';
 import { CONFIRMED_SPEAKERS } from '@/data/peopleData';
 import SpeakerAvatar from '@/components/speakerAvatar';
 
@@ -24,21 +24,18 @@ export default function SpeakerSection() {
       if (gridRef.current) {
         gsap.fromTo(
           gridRef.current.children,
-          { opacity: 0, y: 30, scale: 0.95 },
+          { opacity: 0, y: 30, scale: 0.94 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.6,
-            stagger: {
-              each: 0.05,
-              grid: 'auto',
-            },
+            duration: 0.65,
+            stagger: 0.05,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: gridRef.current,
               start: 'top 85%',
-              toggleActions: 'play none none reverse',
+              toggleActions: 'play none none none',
             },
           }
         );
@@ -57,7 +54,7 @@ export default function SpeakerSection() {
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center gap-10 sm:gap-14">
         
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-3 max-w-3xl mx-auto">
+        <div className="flex flex-col items-center text-center gap-3 max-w-3xl mx-auto scroll-fade-down">
           <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#163B32] leading-tight">
             Speakers
           </h2>
@@ -76,7 +73,7 @@ export default function SpeakerSection() {
             <Link
               key={speaker.slug}
               href={`/${speaker.slug}`}
-              className="w-full bg-white hover:bg-[#FAFCFA] rounded-2xl sm:rounded-3xl border border-[#E2E6DF] hover:border-[#163B32]/40 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-3.5 sm:p-4 flex flex-col justify-between group cursor-pointer text-center relative overflow-hidden"
+              className="w-full bg-white hover:bg-[#FAFCFA] rounded-2xl sm:rounded-3xl border border-[#E2E6DF] hover:border-[#163B32]/40 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-3.5 sm:p-4 flex flex-col justify-between group cursor-pointer text-center relative overflow-hidden will-change-transform"
             >
               {/* Speaker Portrait */}
               <div className="flex flex-col items-center gap-3">
@@ -90,10 +87,7 @@ export default function SpeakerSection() {
                 </div>
 
                 {/* Name & Title */}
-                <div className="flex flex-col gap-1 w-full">
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#163B32] bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full mx-auto">
-                    Speaker
-                  </span>
+                <div className="flex flex-col gap-1 w-full pt-1">
 
                   <h3 className="font-editorial text-xs sm:text-sm md:text-base font-bold text-slate-900 group-hover:text-[#163B32] transition-colors leading-snug line-clamp-2">
                     {speaker.name}
@@ -178,10 +172,6 @@ export default function SpeakerSection() {
 
                 {/* Details */}
                 <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2 flex-1">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#163B32] border border-emerald-300">
-                    Confirmed Speaker
-                  </span>
-
                   <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-[#163B32]">
                     {selectedSpeaker.name}
                   </h3>

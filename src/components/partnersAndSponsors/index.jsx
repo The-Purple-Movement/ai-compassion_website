@@ -13,11 +13,11 @@ import s5 from '@/../public/health.webp';
 import s6 from '@/../public/be.webp';
 
 import p1 from '@/../public/pdie.webp';
-import p2 from '@/../public/mulearn logo.png';
+import p2 from '@/../public/mulearn logo.webp';
 import p4 from '@/../public/logo-globalai.webp';
-import p5 from '@/../public/650.png';
-import p6 from '@/../public/intuitio.jpg';
-import p7 from '@/../public/ism.jpg';
+import p5 from '@/../public/650.webp';
+import p6 from '@/../public/intuitio.webp';
+import p7 from '@/../public/ism.webp';
 
 const SPONSORS = [
   { img: s1, name: 'USA Pavilion Expo 2025 Osaka' },
@@ -26,16 +26,16 @@ const SPONSORS = [
   { img: s4, name: 'Goi Peace Foundation' },
   { img: s5, name: 'HEALTHSPAN X' },
   { img: s6, name: 'Be. ~scubed~' },
-  { img: '/makemypass-logo.png', name: 'MakeMyPass', isCustom: true },
+  { img: '/makemypass-logo.webp', name: 'MakeMyPass', isCustom: true },
 ];
 
 const PARTNERS = [
-  { img: '/imagine-logo.png', name: 'IMAGINE', isCustom: true },
-  { img: '/compassion-economy-logo.png', name: 'Compassion Economy', isCustom: true },
+  { img: '/imagine-logo.webp', name: 'IMAGINE', isCustom: true },
+  { img: '/compassion-economy-logo.webp', name: 'Compassion Economy', isCustom: true },
   { img: '/ideaz-logo.svg', name: 'IDEAZ Business Innovation', isCustom: true },
   { img: p1, name: 'PDIE Group' },
   { img: p2, name: 'μLearn' },
-  { img: '/purple-logo-darktext.png', name: 'The Purple Movement', isCustom: true },
+  { img: '/purple-logo-darktext.webp', name: 'The Purple Movement', isCustom: true },
   { img: p4, name: 'Global AI Alliance' },
   { img: p5, name: '650ai LAB' },
   { img: p6, name: 'INTUITIO VENTURES' },

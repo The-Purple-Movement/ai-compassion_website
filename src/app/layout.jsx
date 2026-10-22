@@ -83,7 +83,6 @@ export default function RootLayout({ children }) {
       <body
         className={`${libre.variable} ${sen.variable} ${jakarta.variable} font-sans antialiased text-[#171918] bg-[#F8F6F0] selection:bg-[#163B32] selection:text-[#F8F6F0]`}
       >
-        <div className="cinema-grain" aria-hidden="true" />
         <TopReadingProgress />
         <SmoothScrollProvider>
           <Navbar />

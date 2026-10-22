@@ -2,15 +2,15 @@
 
 import Image from 'next/image';
 import p1 from '@/../public/pdie.webp';
-import p2 from '@/../public/mulearn logo.png';
-import p3 from '@/../public/purple.png';
+import p2 from '@/../public/mulearn logo.webp';
+import p3 from '@/../public/purple.webp';
 import p4 from '@/../public/logo-globalai.webp';
-import p5 from '@/../public/650.png';
-import p6 from '@/../public/intuitio.jpg';
-import p7 from '@/../public/ism.jpg';
+import p5 from '@/../public/650.webp';
+import p6 from '@/../public/intuitio.webp';
+import p7 from '@/../public/ism.webp';
 
 const PARTNERS = [
-  { img: '/compassion-economy-logo.png', name: 'Compassion Economy' },
+  { img: '/compassion-economy-logo.webp', name: 'Compassion Economy' },
   { img: '/ideaz-logo.svg', name: 'IDEAZ Business Innovation' },
   { img: p1, name: 'PDIE Group' },
   { img: p2, name: 'μLearn' },

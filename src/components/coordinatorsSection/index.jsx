@@ -37,14 +37,14 @@ function MemberAvatar({ img, name, imgPosition }) {
 
   if (img) {
     return (
-      <div className="relative w-full aspect-square max-w-[140px] sm:max-w-[150px] mx-auto rounded-2xl overflow-hidden bg-slate-100 shadow-xs border border-emerald-100 group-hover:scale-105 transition-transform duration-300">
+      <div className="relative w-32 h-32 sm:w-36 sm:h-36 aspect-square shrink-0 mx-auto rounded-2xl overflow-hidden bg-slate-100 shadow-xs border border-emerald-100 group-hover:scale-105 transition-transform duration-300">
         <Image
           src={img}
           alt={name}
           fill
           className="object-cover"
           style={{ objectPosition: imgPosition || 'center 20%' }}
-          sizes="(max-width: 640px) 140px, 150px"
+          sizes="(max-width: 640px) 128px, 144px"
         />
       </div>
     );
@@ -52,7 +52,7 @@ function MemberAvatar({ img, name, imgPosition }) {
 
   // Stylish Placeholder Avatar for team members
   return (
-    <div className="relative w-full aspect-square max-w-[140px] sm:max-w-[150px] mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-[#163B32] via-[#1F4D42] to-[#0E2822] shadow-xs border border-emerald-200/40 group-hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center p-3 select-none">
+    <div className="relative w-32 h-32 sm:w-36 sm:h-36 aspect-square shrink-0 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-[#163B32] via-[#1F4D42] to-[#0E2822] shadow-xs border border-emerald-200/40 group-hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center p-3 select-none">
       <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 flex items-center justify-center shadow-inner">
         <span className="font-editorial text-lg sm:text-xl font-bold tracking-wider text-white">
           {initials}

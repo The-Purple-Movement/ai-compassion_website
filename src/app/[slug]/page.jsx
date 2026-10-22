@@ -61,7 +61,7 @@ export default async function PersonProfilePage({ params }) {
           </Link>
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#D9DDD6] text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-widest hidden sm:inline-flex">
-            <Radio className="w-3 h-3 text-[#22C55E] animate-pulse" />
+            <Sparkles className="w-3 h-3 text-[#163B32]" />
             <span>Global Forum 2026</span>
           </div>
         </div>

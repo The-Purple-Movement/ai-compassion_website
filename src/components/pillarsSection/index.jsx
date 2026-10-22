@@ -81,7 +81,7 @@ const PILLARS_DATA = [
   },
 ];
 
-// Helper to calculate SVG donut arc path with fixed precision to avoid SSR float mismatches
+// Helper to calculate SVG donut arc path
 function describeArc(cx, cy, rInner, rOuter, startAngleDeg, endAngleDeg) {
   const toRad = (deg) => (deg * Math.PI) / 180;
   
@@ -133,62 +133,19 @@ export default function PillarsSection() {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReducedMotion) return;
 
-      // 1. Center Mandala Continuous Parallax Rotation on Scroll
+      // Center Mandala Smooth Rotation on Scroll
       if (mandalaRef.current) {
         gsap.fromTo(
           mandalaRef.current,
-          { rotate: -25, scale: 0.9 },
+          { rotate: -25 },
           {
             rotate: 25,
-            scale: 1,
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top bottom',
               end: 'bottom top',
               scrub: 1.5,
-            },
-          }
-        );
-      }
-
-      // 2. Left Column Pillars Staggered Entrance Reveal
-      if (leftColRef.current) {
-        gsap.fromTo(
-          leftColRef.current.children,
-          { opacity: 0, x: -30, y: 20 },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: leftColRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
-
-      // 3. Right Column Pillars Staggered Entrance Reveal
-      if (rightColRef.current) {
-        gsap.fromTo(
-          rightColRef.current.children,
-          { opacity: 0, x: 30, y: 20 },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: rightColRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
             },
           }
         );
@@ -217,13 +174,14 @@ export default function PillarsSection() {
           </p>
         </div>
 
-        {/* Circular Donut Mandala & Flanking Pillars Layout */}
+        {/* 3-Track Parallel Scrolling Grid */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-center">
           
-          {/* Left Column: 3 Pillars */}
+          {/* Left Column: 3 Pillars (Parallel Track A - drifts upward) */}
           <div
             ref={leftColRef}
-            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-right order-2 lg:order-1 scroll-slide-left"
+            data-parallel-col="left"
+            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-right order-2 lg:order-1 will-change-transform"
           >
             {leftPillars.map((pillar) => {
               const isHovered = hoveredIdx === pillar.id;
@@ -232,10 +190,10 @@ export default function PillarsSection() {
                   key={pillar.id}
                   onMouseEnter={() => setHoveredIdx(pillar.id)}
                   onMouseLeave={() => setHoveredIdx(null)}
-                  className={`cursor-pointer transition-all duration-300 p-3 sm:p-3.5 rounded-2xl border ${
+                  className={`cursor-pointer transition-all duration-300 p-4 rounded-2xl border ${
                     isHovered
-                      ? 'bg-[#F8FAFC] border-slate-200 lg:translate-x-1 shadow-md'
-                      : 'border-transparent hover:bg-[#FAFAFA]'
+                      ? 'bg-[#F8FAFC] border-slate-300 lg:translate-x-1.5 shadow-lg scale-[1.02]'
+                      : 'border-slate-100 hover:bg-[#FAFAFA] shadow-2xs'
                   }`}
                 >
                   <h3
@@ -253,8 +211,11 @@ export default function PillarsSection() {
             })}
           </div>
 
-          {/* Center Column: 6-Segment Circular Donut SVG with Parallax Rotation */}
-          <div className="lg:col-span-4 flex items-center justify-center order-1 lg:order-2 py-1 scroll-pop">
+          {/* Center Column: 6-Segment Circular Donut SVG (Parallel Track B - 3D rotation) */}
+          <div 
+            data-parallax="0.15"
+            className="lg:col-span-4 flex items-center justify-center order-1 lg:order-2 py-1 will-change-transform"
+          >
             <div
               ref={mandalaRef}
               className="relative w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] select-none will-change-transform"
@@ -348,10 +309,11 @@ export default function PillarsSection() {
             </div>
           </div>
 
-          {/* Right Column: 3 Pillars */}
+          {/* Right Column: 3 Pillars (Parallel Track C - drifts with offset) */}
           <div
             ref={rightColRef}
-            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-left order-3 scroll-slide-right"
+            data-parallel-col="right"
+            className="lg:col-span-4 flex flex-col justify-between gap-4 sm:gap-5 lg:text-left order-3 will-change-transform"
           >
             {rightPillars.map((pillar) => {
               const isHovered = hoveredIdx === pillar.id;
@@ -360,10 +322,10 @@ export default function PillarsSection() {
                   key={pillar.id}
                   onMouseEnter={() => setHoveredIdx(pillar.id)}
                   onMouseLeave={() => setHoveredIdx(null)}
-                  className={`cursor-pointer transition-all duration-300 p-3 sm:p-3.5 rounded-2xl border ${
+                  className={`cursor-pointer transition-all duration-300 p-4 rounded-2xl border ${
                     isHovered
-                      ? 'bg-[#F8FAFC] border-slate-200 lg:-translate-x-1 shadow-md'
-                      : 'border-transparent hover:bg-[#FAFAFA]'
+                      ? 'bg-[#F8FAFC] border-slate-300 lg:-translate-x-1.5 shadow-lg scale-[1.02]'
+                      : 'border-slate-100 hover:bg-[#FAFAFA] shadow-2xs'
                   }`}
                 >
                   <h3

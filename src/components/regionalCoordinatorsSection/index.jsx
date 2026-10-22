@@ -10,41 +10,6 @@ import { REGIONAL_COORDINATORS } from '@/data/peopleData';
 
 export default function RegionalCoordinatorsSection() {
   const sectionRef = useRef(null);
-  const gridRef = useRef(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReducedMotion) return;
-
-      if (gridRef.current) {
-        gsap.fromTo(
-          gridRef.current.children,
-          { opacity: 0, y: 35, scale: 0.96 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            stagger: {
-              each: 0.08,
-              grid: 'auto',
-            },
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: gridRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
@@ -72,7 +37,6 @@ export default function RegionalCoordinatorsSection() {
 
         {/* Coordinators Grid */}
         <div
-          ref={gridRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 w-full"
         >
           {REGIONAL_COORDINATORS.map((coordinator) => (

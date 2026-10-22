@@ -177,7 +177,7 @@ export default function ThreeEarthGlobe({
     // Load High-Res Photorealistic Textures asynchronously
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(
-      '/earth/earth_color_2k.jpg',
+      '/earth/earth_color_2k.webp',
       (tex) => {
         tex.colorSpace = THREE.SRGBColorSpace;
         sphereMat.map = tex;
@@ -189,7 +189,7 @@ export default function ThreeEarthGlobe({
       }
     );
 
-    textureLoader.load('/earth/earth_bump_2k.jpg', (bumpTex) => {
+    textureLoader.load('/earth/earth_bump_2k.webp', (bumpTex) => {
       sphereMat.bumpMap = bumpTex;
       sphereMat.bumpScale = 0.045;
       sphereMat.needsUpdate = true;

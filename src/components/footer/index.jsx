@@ -150,7 +150,7 @@ export default function Footer() {
             </span>
             <div className="relative h-6 w-28 shrink-0 flex items-center justify-center">
               <Image
-                src="/purple-logo-darktext.png"
+                src="/purple-logo-darktext.webp"
                 alt="The Purple Movement"
                 fill
                 className="object-contain"

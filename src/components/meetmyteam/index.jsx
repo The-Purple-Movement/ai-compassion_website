@@ -2,18 +2,18 @@ import React from "react";
 
 // Example team data (replace img with actual URLs or imports)
 const team = [
-  { name: "Jun Sato", role: "", img: "/jun.png" },
-  { name: "Chris Ewald", role: "", img: "/chris.png" },
-  { name: "Anuka Roinishvili", role: "", img: "/anuka.png" },
-  { name: "Naomi Yamazaki", role: "", img: "/naomi.png" },
-  { name: "Deepu Nath", role: "", img: "/deepu.png" },
-  // { name: "Akshaya Sita Rajesh", role: "", img: "/akshaya.png" },
-  { name: "Akshaya Sita Rajesh", role: "", img: "/akshaya-rajesh.png" },
-  { name: "Rasha Hasoon", role: "", img: "/rasha.png" },
-  { name: "Nash", role: "", img: "/nash.png" },
-  { name: "Dany Koshy", role: "", img: "/dany.png" },
-  { name: "Akshat Pradeep", role: "Project Manager", img: "/akshat.png" },
-  { name: "Jibu Mathew", role: "", img: "/jibu.png" },
+  { name: "Jun Sato", role: "", img: "/jun.webp" },
+  { name: "Chris Ewald", role: "", img: "/chris.webp" },
+  { name: "Anuka Roinishvili", role: "", img: "/anuka.webp" },
+  { name: "Naomi Yamazaki", role: "", img: "/naomi.webp" },
+  { name: "Deepu Nath", role: "", img: "/deepu.webp" },
+  // { name: "Akshaya Sita Rajesh", role: "", img: "/akshaya.webp" },
+  { name: "Akshaya Sita Rajesh", role: "", img: "/akshaya-rajesh.webp" },
+  { name: "Rasha Hasoon", role: "", img: "/rasha.webp" },
+  { name: "Nash", role: "", img: "/nash.webp" },
+  { name: "Dany Koshy", role: "", img: "/dany.webp" },
+  { name: "Akshat Pradeep", role: "Project Manager", img: "/akshat.webp" },
+  { name: "Jibu Mathew", role: "", img: "/jibu.webp" },
 ];
 
 export default function MeetMyTeam() {
